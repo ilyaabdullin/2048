@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Game2048ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
