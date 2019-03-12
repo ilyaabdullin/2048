@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,14 +16,476 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="Game2048ViewController" customModule="_048" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="A14-Bp-iFv">
+                                <rect key="frame" x="10" y="251" width="394" height="394"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1zD-Oa-yyZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="42.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blb-0G-iU1" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="blb-0G-iU1" secondAttribute="height" multiplier="1:1" id="ekW-j0-PXK"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XV2-3W-BVe" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYp-oI-Tww" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4q-0n-CxO" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QS7-TH-EMq" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjI-k4-F8x" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwM-Df-YRE" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZvN-0w-Z3U" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="C4q-0n-CxO" firstAttribute="width" secondItem="AYp-oI-Tww" secondAttribute="width" id="1Dv-8x-Y0O"/>
+                                            <constraint firstItem="QS7-TH-EMq" firstAttribute="width" secondItem="C4q-0n-CxO" secondAttribute="width" id="6S8-kl-kNv"/>
+                                            <constraint firstItem="AYp-oI-Tww" firstAttribute="height" secondItem="XV2-3W-BVe" secondAttribute="height" id="EPW-Qn-RZ1"/>
+                                            <constraint firstItem="ZvN-0w-Z3U" firstAttribute="width" secondItem="kwM-Df-YRE" secondAttribute="width" id="HM6-5V-yWe"/>
+                                            <constraint firstItem="PjI-k4-F8x" firstAttribute="height" secondItem="QS7-TH-EMq" secondAttribute="height" id="J6j-N8-qiE"/>
+                                            <constraint firstItem="ZvN-0w-Z3U" firstAttribute="height" secondItem="kwM-Df-YRE" secondAttribute="height" id="P5K-vE-Qwa"/>
+                                            <constraint firstItem="XV2-3W-BVe" firstAttribute="width" secondItem="blb-0G-iU1" secondAttribute="width" id="Pyu-fl-2QT"/>
+                                            <constraint firstItem="AYp-oI-Tww" firstAttribute="width" secondItem="XV2-3W-BVe" secondAttribute="width" id="UF2-Ee-wRn"/>
+                                            <constraint firstItem="C4q-0n-CxO" firstAttribute="height" secondItem="AYp-oI-Tww" secondAttribute="height" id="WCj-E8-hbc"/>
+                                            <constraint firstItem="XV2-3W-BVe" firstAttribute="height" secondItem="blb-0G-iU1" secondAttribute="height" id="db7-0I-8pM"/>
+                                            <constraint firstItem="kwM-Df-YRE" firstAttribute="width" secondItem="PjI-k4-F8x" secondAttribute="width" id="gzJ-5x-mkc"/>
+                                            <constraint firstItem="PjI-k4-F8x" firstAttribute="width" secondItem="QS7-TH-EMq" secondAttribute="width" id="lKq-5N-Jcw"/>
+                                            <constraint firstItem="QS7-TH-EMq" firstAttribute="height" secondItem="C4q-0n-CxO" secondAttribute="height" id="m3W-PV-bLy"/>
+                                            <constraint firstItem="kwM-Df-YRE" firstAttribute="height" secondItem="PjI-k4-F8x" secondAttribute="height" id="wNE-TA-xa0"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tr0-Ua-iJX">
+                                        <rect key="frame" x="0.0" y="50.5" width="394" height="42"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T45-QE-6Sf" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="T45-QE-6Sf" secondAttribute="height" multiplier="1:1" id="c5g-MZ-HqZ"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fb-hl-bOL" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlo-ZP-eGu" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcX-VS-b3D" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBE-hV-chE" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-QW-oSP" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ReF-Kw-bnk" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4T-8s-Gpj" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="wBE-hV-chE" firstAttribute="width" secondItem="HcX-VS-b3D" secondAttribute="width" id="1fD-Rz-oP0"/>
+                                            <constraint firstItem="ReF-Kw-bnk" firstAttribute="width" secondItem="KDB-QW-oSP" secondAttribute="width" id="401-hv-Z6U"/>
+                                            <constraint firstItem="KDB-QW-oSP" firstAttribute="width" secondItem="wBE-hV-chE" secondAttribute="width" id="526-Kg-N7e"/>
+                                            <constraint firstItem="hlo-ZP-eGu" firstAttribute="width" secondItem="1fb-hl-bOL" secondAttribute="width" id="Dkr-Or-cMF"/>
+                                            <constraint firstItem="ReF-Kw-bnk" firstAttribute="height" secondItem="KDB-QW-oSP" secondAttribute="height" id="H43-jh-cKS"/>
+                                            <constraint firstItem="Q4T-8s-Gpj" firstAttribute="height" secondItem="ReF-Kw-bnk" secondAttribute="height" id="NCj-3K-RUj"/>
+                                            <constraint firstItem="hlo-ZP-eGu" firstAttribute="height" secondItem="1fb-hl-bOL" secondAttribute="height" id="NWx-Ie-OP4"/>
+                                            <constraint firstItem="1fb-hl-bOL" firstAttribute="height" secondItem="T45-QE-6Sf" secondAttribute="height" id="NrS-nv-0n9"/>
+                                            <constraint firstItem="1fb-hl-bOL" firstAttribute="width" secondItem="T45-QE-6Sf" secondAttribute="width" id="VWX-fx-2Is"/>
+                                            <constraint firstItem="HcX-VS-b3D" firstAttribute="width" secondItem="hlo-ZP-eGu" secondAttribute="width" id="i0p-Y3-Zie"/>
+                                            <constraint firstItem="HcX-VS-b3D" firstAttribute="height" secondItem="hlo-ZP-eGu" secondAttribute="height" id="jUW-bG-5YV"/>
+                                            <constraint firstItem="Q4T-8s-Gpj" firstAttribute="width" secondItem="ReF-Kw-bnk" secondAttribute="width" id="jaY-Bm-Q1U"/>
+                                            <constraint firstItem="KDB-QW-oSP" firstAttribute="height" secondItem="wBE-hV-chE" secondAttribute="height" id="jbD-H8-7vB"/>
+                                            <constraint firstItem="wBE-hV-chE" firstAttribute="height" secondItem="HcX-VS-b3D" secondAttribute="height" id="odI-dG-t89"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rk6-P5-PNT">
+                                        <rect key="frame" x="0.0" y="100.5" width="394" height="42.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1q-h9-L3E" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="H1q-h9-L3E" secondAttribute="height" multiplier="1:1" id="ow2-VP-duM"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTo-Ub-AJn" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kI9-UC-yHm" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cae-0K-ehJ" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxP-7t-RFX" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNp-m9-NyU" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fug-xS-YCw" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEt-vx-42x" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="cae-0K-ehJ" firstAttribute="width" secondItem="kI9-UC-yHm" secondAttribute="width" id="1wN-hw-i8N"/>
+                                            <constraint firstItem="kI9-UC-yHm" firstAttribute="height" secondItem="qTo-Ub-AJn" secondAttribute="height" id="AuV-ob-5Qo"/>
+                                            <constraint firstItem="qTo-Ub-AJn" firstAttribute="height" secondItem="H1q-h9-L3E" secondAttribute="height" id="DsV-Aa-buR"/>
+                                            <constraint firstItem="Fug-xS-YCw" firstAttribute="width" secondItem="HNp-m9-NyU" secondAttribute="width" id="IQT-Ie-HSI"/>
+                                            <constraint firstItem="Fug-xS-YCw" firstAttribute="height" secondItem="HNp-m9-NyU" secondAttribute="height" id="NKd-jg-m4M"/>
+                                            <constraint firstItem="kI9-UC-yHm" firstAttribute="width" secondItem="qTo-Ub-AJn" secondAttribute="width" id="QGU-c9-h9y"/>
+                                            <constraint firstItem="qTo-Ub-AJn" firstAttribute="width" secondItem="H1q-h9-L3E" secondAttribute="width" id="Ymx-Og-hfP"/>
+                                            <constraint firstItem="rEt-vx-42x" firstAttribute="width" secondItem="Fug-xS-YCw" secondAttribute="width" id="iEl-a4-9hs"/>
+                                            <constraint firstItem="cae-0K-ehJ" firstAttribute="height" secondItem="kI9-UC-yHm" secondAttribute="height" id="jYz-JX-Iwa"/>
+                                            <constraint firstItem="HNp-m9-NyU" firstAttribute="width" secondItem="RxP-7t-RFX" secondAttribute="width" id="peE-se-7zB"/>
+                                            <constraint firstItem="RxP-7t-RFX" firstAttribute="width" secondItem="cae-0K-ehJ" secondAttribute="width" id="q02-Re-NK0"/>
+                                            <constraint firstItem="rEt-vx-42x" firstAttribute="height" secondItem="Fug-xS-YCw" secondAttribute="height" id="vXV-Du-kEN"/>
+                                            <constraint firstItem="HNp-m9-NyU" firstAttribute="height" secondItem="RxP-7t-RFX" secondAttribute="height" id="w1I-F9-Jqt"/>
+                                            <constraint firstItem="RxP-7t-RFX" firstAttribute="height" secondItem="cae-0K-ehJ" secondAttribute="height" id="wbw-Yk-Lrs"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Be-aq-fWJ">
+                                        <rect key="frame" x="0.0" y="151" width="394" height="42"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0EF-EV-FYp" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0EF-EV-FYp" secondAttribute="height" multiplier="1:1" id="nCg-Jr-bri"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1p-wl-kQD" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oka-4v-d6S" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kif-1E-2VZ" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5R-D7-J88" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2y-iV-Crn" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdg-5c-yzi" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ql-ac-gUB" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="S2y-iV-Crn" firstAttribute="height" secondItem="o5R-D7-J88" secondAttribute="height" id="4WY-HI-lgg"/>
+                                            <constraint firstItem="kif-1E-2VZ" firstAttribute="width" secondItem="Oka-4v-d6S" secondAttribute="width" id="CfF-CK-US3"/>
+                                            <constraint firstItem="S2y-iV-Crn" firstAttribute="width" secondItem="o5R-D7-J88" secondAttribute="width" id="EYi-OJ-HvJ"/>
+                                            <constraint firstItem="rdg-5c-yzi" firstAttribute="height" secondItem="S2y-iV-Crn" secondAttribute="height" id="MPN-au-jsh"/>
+                                            <constraint firstItem="kif-1E-2VZ" firstAttribute="height" secondItem="Oka-4v-d6S" secondAttribute="height" id="MfT-ya-5CY"/>
+                                            <constraint firstItem="Oka-4v-d6S" firstAttribute="width" secondItem="z1p-wl-kQD" secondAttribute="width" id="T27-WV-S6X"/>
+                                            <constraint firstItem="rdg-5c-yzi" firstAttribute="width" secondItem="S2y-iV-Crn" secondAttribute="width" id="Wgh-jr-3Ia"/>
+                                            <constraint firstItem="z1p-wl-kQD" firstAttribute="height" secondItem="0EF-EV-FYp" secondAttribute="height" id="gTD-MZ-ui5"/>
+                                            <constraint firstItem="6Ql-ac-gUB" firstAttribute="width" secondItem="rdg-5c-yzi" secondAttribute="width" id="mWq-ZT-Rom"/>
+                                            <constraint firstItem="z1p-wl-kQD" firstAttribute="width" secondItem="0EF-EV-FYp" secondAttribute="width" id="nhu-70-865"/>
+                                            <constraint firstItem="o5R-D7-J88" firstAttribute="width" secondItem="kif-1E-2VZ" secondAttribute="width" id="qpU-Ld-wx5"/>
+                                            <constraint firstItem="6Ql-ac-gUB" firstAttribute="height" secondItem="rdg-5c-yzi" secondAttribute="height" id="s0n-gK-31e"/>
+                                            <constraint firstItem="o5R-D7-J88" firstAttribute="height" secondItem="kif-1E-2VZ" secondAttribute="height" id="wa3-3r-fGT"/>
+                                            <constraint firstItem="Oka-4v-d6S" firstAttribute="height" secondItem="z1p-wl-kQD" secondAttribute="height" id="y8z-w9-4Fo"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4g-16-1bW">
+                                        <rect key="frame" x="0.0" y="201" width="394" height="42.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPh-HK-DRf" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="FPh-HK-DRf" secondAttribute="height" multiplier="1:1" id="x1m-oS-2gS"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obb-8B-j4x" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qre-Zj-WMM" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvk-P0-McR" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIG-Uk-nmD" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpR-ZR-gag" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWO-QC-bVH" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNB-f1-yVh" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="TWO-QC-bVH" firstAttribute="height" secondItem="kpR-ZR-gag" secondAttribute="height" id="5DJ-zR-son"/>
+                                            <constraint firstItem="nIG-Uk-nmD" firstAttribute="height" secondItem="lvk-P0-McR" secondAttribute="height" id="CuF-bs-3cZ"/>
+                                            <constraint firstItem="LNB-f1-yVh" firstAttribute="height" secondItem="TWO-QC-bVH" secondAttribute="height" id="Ddd-3r-ccy"/>
+                                            <constraint firstItem="LNB-f1-yVh" firstAttribute="width" secondItem="TWO-QC-bVH" secondAttribute="width" id="M5H-qg-RcS"/>
+                                            <constraint firstItem="Obb-8B-j4x" firstAttribute="width" secondItem="FPh-HK-DRf" secondAttribute="width" id="PS8-qx-STl"/>
+                                            <constraint firstItem="qre-Zj-WMM" firstAttribute="width" secondItem="Obb-8B-j4x" secondAttribute="width" id="SwM-do-qYr"/>
+                                            <constraint firstItem="Obb-8B-j4x" firstAttribute="height" secondItem="FPh-HK-DRf" secondAttribute="height" id="Xea-Lk-mOE"/>
+                                            <constraint firstItem="nIG-Uk-nmD" firstAttribute="width" secondItem="lvk-P0-McR" secondAttribute="width" id="Yk3-MJ-yIZ"/>
+                                            <constraint firstItem="kpR-ZR-gag" firstAttribute="width" secondItem="nIG-Uk-nmD" secondAttribute="width" id="eL9-H7-yFs"/>
+                                            <constraint firstItem="lvk-P0-McR" firstAttribute="height" secondItem="qre-Zj-WMM" secondAttribute="height" id="fKK-R0-Ref"/>
+                                            <constraint firstItem="kpR-ZR-gag" firstAttribute="height" secondItem="nIG-Uk-nmD" secondAttribute="height" id="g68-1a-Hpl"/>
+                                            <constraint firstItem="TWO-QC-bVH" firstAttribute="width" secondItem="kpR-ZR-gag" secondAttribute="width" id="m3c-Xi-1VK"/>
+                                            <constraint firstItem="lvk-P0-McR" firstAttribute="width" secondItem="qre-Zj-WMM" secondAttribute="width" id="mCz-wG-04v"/>
+                                            <constraint firstItem="qre-Zj-WMM" firstAttribute="height" secondItem="Obb-8B-j4x" secondAttribute="height" id="tqY-cw-lvo"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tfy-oD-8c9">
+                                        <rect key="frame" x="0.0" y="251.5" width="394" height="42"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX2-Ug-U0V" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="RX2-Ug-U0V" secondAttribute="height" multiplier="1:1" id="E38-mn-OoK"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCS-Ii-53I" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yv-Nr-fst" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGj-e2-fZO" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFf-Zp-2aw" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49r-Kw-OU5" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQl-AB-Rry" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1c-YP-mPD" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="x1c-YP-mPD" firstAttribute="height" secondItem="nQl-AB-Rry" secondAttribute="height" id="4Ee-2d-RYM"/>
+                                            <constraint firstItem="UFf-Zp-2aw" firstAttribute="width" secondItem="gGj-e2-fZO" secondAttribute="width" id="Au8-Mg-S0J"/>
+                                            <constraint firstItem="nQl-AB-Rry" firstAttribute="height" secondItem="49r-Kw-OU5" secondAttribute="height" id="BcS-VV-Rc4"/>
+                                            <constraint firstItem="nQl-AB-Rry" firstAttribute="width" secondItem="49r-Kw-OU5" secondAttribute="width" id="C6A-mA-Yta"/>
+                                            <constraint firstItem="UFf-Zp-2aw" firstAttribute="height" secondItem="gGj-e2-fZO" secondAttribute="height" id="OAg-gD-9zg"/>
+                                            <constraint firstItem="SCS-Ii-53I" firstAttribute="width" secondItem="RX2-Ug-U0V" secondAttribute="width" id="TbL-Xp-oen"/>
+                                            <constraint firstItem="gGj-e2-fZO" firstAttribute="width" secondItem="1yv-Nr-fst" secondAttribute="width" id="Xn1-6k-NgV"/>
+                                            <constraint firstItem="49r-Kw-OU5" firstAttribute="width" secondItem="UFf-Zp-2aw" secondAttribute="width" id="Yz4-Df-XjS"/>
+                                            <constraint firstItem="1yv-Nr-fst" firstAttribute="width" secondItem="SCS-Ii-53I" secondAttribute="width" id="fK3-Ne-RRq"/>
+                                            <constraint firstItem="1yv-Nr-fst" firstAttribute="height" secondItem="SCS-Ii-53I" secondAttribute="height" id="iUZ-L5-TfM"/>
+                                            <constraint firstItem="49r-Kw-OU5" firstAttribute="height" secondItem="UFf-Zp-2aw" secondAttribute="height" id="vYZ-tE-k4O"/>
+                                            <constraint firstItem="SCS-Ii-53I" firstAttribute="height" secondItem="RX2-Ug-U0V" secondAttribute="height" id="wUX-8l-D0p"/>
+                                            <constraint firstItem="gGj-e2-fZO" firstAttribute="height" secondItem="1yv-Nr-fst" secondAttribute="height" id="ySH-IG-1q8"/>
+                                            <constraint firstItem="x1c-YP-mPD" firstAttribute="width" secondItem="nQl-AB-Rry" secondAttribute="width" id="yo3-XO-URy"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="985-Jv-deG">
+                                        <rect key="frame" x="0.0" y="301.5" width="394" height="42.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDx-aZ-DLs" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="tDx-aZ-DLs" secondAttribute="height" multiplier="1:1" id="z2r-4n-8Qw"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MH5-dp-s4E" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-aD-7eH" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jgi-b5-Sbg" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYM-Bk-PFj" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofg-a5-nKX" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGN-Zg-Wsv" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Zh-Xi-TqV" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="MH5-dp-s4E" firstAttribute="height" secondItem="tDx-aZ-DLs" secondAttribute="height" id="3ob-Hv-BjD"/>
+                                            <constraint firstItem="gVe-aD-7eH" firstAttribute="width" secondItem="MH5-dp-s4E" secondAttribute="width" id="40x-DO-LZI"/>
+                                            <constraint firstItem="KGN-Zg-Wsv" firstAttribute="height" secondItem="ofg-a5-nKX" secondAttribute="height" id="7Td-3j-CiN"/>
+                                            <constraint firstItem="AYM-Bk-PFj" firstAttribute="width" secondItem="Jgi-b5-Sbg" secondAttribute="width" id="916-1G-dhC"/>
+                                            <constraint firstItem="3Zh-Xi-TqV" firstAttribute="height" secondItem="KGN-Zg-Wsv" secondAttribute="height" id="Dby-cm-1k0"/>
+                                            <constraint firstItem="KGN-Zg-Wsv" firstAttribute="width" secondItem="ofg-a5-nKX" secondAttribute="width" id="Hxx-nY-3E5"/>
+                                            <constraint firstItem="Jgi-b5-Sbg" firstAttribute="height" secondItem="gVe-aD-7eH" secondAttribute="height" id="Mhs-rW-xuQ"/>
+                                            <constraint firstItem="Jgi-b5-Sbg" firstAttribute="width" secondItem="gVe-aD-7eH" secondAttribute="width" id="eZK-7O-lJa"/>
+                                            <constraint firstItem="MH5-dp-s4E" firstAttribute="width" secondItem="tDx-aZ-DLs" secondAttribute="width" id="fkZ-XQ-2gW"/>
+                                            <constraint firstItem="ofg-a5-nKX" firstAttribute="width" secondItem="AYM-Bk-PFj" secondAttribute="width" id="j6m-3c-HBK"/>
+                                            <constraint firstItem="AYM-Bk-PFj" firstAttribute="height" secondItem="Jgi-b5-Sbg" secondAttribute="height" id="kRq-f6-bN3"/>
+                                            <constraint firstItem="3Zh-Xi-TqV" firstAttribute="width" secondItem="KGN-Zg-Wsv" secondAttribute="width" id="sXp-nx-OXA"/>
+                                            <constraint firstItem="gVe-aD-7eH" firstAttribute="height" secondItem="MH5-dp-s4E" secondAttribute="height" id="uNX-9h-Tph"/>
+                                            <constraint firstItem="ofg-a5-nKX" firstAttribute="height" secondItem="AYM-Bk-PFj" secondAttribute="height" id="uPU-hk-T3w"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksi-kQ-6dm">
+                                        <rect key="frame" x="0.0" y="352" width="394" height="42"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjF-DT-hK6" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="PjF-DT-hK6" secondAttribute="height" multiplier="1:1" id="a9g-Ib-Qyp"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V8C-wb-2Db" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="50.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykE-bo-KBg" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="100.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPu-2C-QoZ" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="151" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fG7-D0-6TW" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="201" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r12-H5-XF1" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="251.5" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-07-JZF" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="301.5" y="0.0" width="42.5" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QI-DU-qds" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
+                                                <rect key="frame" x="352" y="0.0" width="42" height="42"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="r12-H5-XF1" firstAttribute="width" secondItem="fG7-D0-6TW" secondAttribute="width" id="0Qo-wj-Lvp"/>
+                                            <constraint firstItem="r12-H5-XF1" firstAttribute="height" secondItem="fG7-D0-6TW" secondAttribute="height" id="3M6-5i-mDR"/>
+                                            <constraint firstItem="th2-07-JZF" firstAttribute="height" secondItem="r12-H5-XF1" secondAttribute="height" id="MeJ-px-gej"/>
+                                            <constraint firstItem="fG7-D0-6TW" firstAttribute="height" secondItem="NPu-2C-QoZ" secondAttribute="height" id="SkR-dV-fKh"/>
+                                            <constraint firstItem="V8C-wb-2Db" firstAttribute="width" secondItem="PjF-DT-hK6" secondAttribute="width" id="TWc-bu-hpV"/>
+                                            <constraint firstItem="NPu-2C-QoZ" firstAttribute="width" secondItem="ykE-bo-KBg" secondAttribute="width" id="aJ5-nW-5q9"/>
+                                            <constraint firstItem="9QI-DU-qds" firstAttribute="width" secondItem="th2-07-JZF" secondAttribute="width" id="aJy-5w-5Hu"/>
+                                            <constraint firstItem="ykE-bo-KBg" firstAttribute="height" secondItem="V8C-wb-2Db" secondAttribute="height" id="eE0-bK-CWE"/>
+                                            <constraint firstItem="NPu-2C-QoZ" firstAttribute="height" secondItem="ykE-bo-KBg" secondAttribute="height" id="mdr-N3-Rqh"/>
+                                            <constraint firstItem="9QI-DU-qds" firstAttribute="height" secondItem="th2-07-JZF" secondAttribute="height" id="oZh-vw-TVz"/>
+                                            <constraint firstItem="V8C-wb-2Db" firstAttribute="height" secondItem="PjF-DT-hK6" secondAttribute="height" id="qlk-xs-lcl"/>
+                                            <constraint firstItem="fG7-D0-6TW" firstAttribute="width" secondItem="NPu-2C-QoZ" secondAttribute="width" id="smp-Yb-GAc"/>
+                                            <constraint firstItem="th2-07-JZF" firstAttribute="width" secondItem="r12-H5-XF1" secondAttribute="width" id="xuU-BO-RqE"/>
+                                            <constraint firstItem="ykE-bo-KBg" firstAttribute="width" secondItem="V8C-wb-2Db" secondAttribute="width" id="zY8-BA-fgT"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="A14-Bp-iFv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1zC-M3-D6d"/>
+                            <constraint firstAttribute="trailing" secondItem="A14-Bp-iFv" secondAttribute="trailing" constant="10" id="WFK-hM-oOv"/>
+                            <constraint firstItem="A14-Bp-iFv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="czl-Ou-aqQ"/>
+                            <constraint firstItem="A14-Bp-iFv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dZt-ql-sHb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="53.571428571428569" y="26.086956521739133"/>
         </scene>
     </scenes>
 </document>
