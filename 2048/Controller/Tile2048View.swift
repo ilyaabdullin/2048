@@ -10,22 +10,10 @@ import UIKit
 
 @IBDesignable class Tile2048View: UIView {
 
-    var value: Int? = 2 {
+    var value: Int? = 1024 {
         didSet {
             label.text = String(value!)
             setNeedsDisplay()
-        }
-        
-    }
-    
-    var tile: Tile2048? {
-        didSet {
-            if tile != nil {
-                value = tile?.value
-            }
-            else {
-                value = nil
-            }
         }
     }
     
@@ -33,22 +21,34 @@ import UIKit
     
     override func draw(_ rect: CGRect) {
         if !isHidden {
-            label = UIBorderedLabel(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-            label.rightInset = padding
-            label.leftInset = padding
-            label.textAlignment = .center
-            label.numberOfLines = 1
-            label.font = UIFont(name: "Helvetica-Bold", size: self.frame.height * 0.67)
-            label.minimumScaleFactor = 1 / self.label.font.pointSize
-            label.adjustsFontSizeToFitWidth = true
-            label.baselineAdjustment = .alignCenters
-            label.layer.backgroundColor = tileBackgroundColor.cgColor
-            label.layer.cornerRadius = cornerRadius
-            label.textColor = tileTextColor
-            label.text = String(value!)
-            addSubview(label)
-            
             backgroundColor = .clear
+            
+            if label == nil { //perform label
+                label = UIBorderedLabel(frame: CGRect(origin: CGPoint.zero, size: frame.size))
+                label.rightInset = padding
+                label.leftInset = padding
+                label.textAlignment = .center
+                label.numberOfLines = 1
+                label.font = UIFont(name: "Helvetica-Bold", size: self.frame.height * 0.67)
+                label.minimumScaleFactor = 1 / self.label.font.pointSize
+                label.adjustsFontSizeToFitWidth = true
+                label.baselineAdjustment = .alignCenters
+                label.layer.cornerRadius = cornerRadius
+                label.textColor = tileTextColor
+            }
+            
+            if value != nil { //set value tile and bgcolor
+                label.layer.backgroundColor = tileBackgroundColor.cgColor
+                label.text = String(value!)
+            }
+            else {
+                label.layer.backgroundColor = #colorLiteral(red: 0.8055974841, green: 0.7564521432, blue: 0.7078657746, alpha: 1)
+                label.text = ""
+            }
+            
+            if !label.isDescendant(of: self) { //add label if this need
+                addSubview(label)
+            }
         }
     }
 

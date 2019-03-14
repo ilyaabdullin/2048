@@ -8,20 +8,16 @@
 
 import Foundation
 
-struct Tile2048 {
-    var value: Int
-    
-    init(power: Int) {
-        value = Int(2.pow(Double(power)))
-    }
-    
-    init(value: Int) {
-        self.value = value
-    }
-}
-
 extension Int {
     func pow (_ power: Double) -> Double {
         return Foundation.pow(Double(self), power)
+    }
+    
+    func get2Pow (power: Int) -> Int {
+        return Int(2.pow(Double(power)))
+    }
+    
+    func getRandomTile2048Value() -> Int {
+        return [2, 2, 2, 2, 2, 2, 2, 4].randomElement()!
     }
 }
