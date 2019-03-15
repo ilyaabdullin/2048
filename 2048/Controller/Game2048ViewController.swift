@@ -37,6 +37,10 @@ extension Game2048ViewController {
         addNewRandomTile()
     }
     
+    enum swipeDirection {
+        case up, down, left, right
+    }
+    
     @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
         addNewRandomTile()
     }
@@ -56,6 +60,11 @@ extension Game2048ViewController {
 
 //animation and model to view logic
 extension Game2048ViewController {
+    
+    struct animationDuration {
+        static var show = 0.3
+    }
+    
     func updateViewFromModelGame2048() {
         for x in 0..<boardSize {
             for y in 0..<boardSize {
@@ -81,8 +90,9 @@ extension Game2048ViewController {
     }
     
     func updateOneTile2048View(for tileIndex: Array<Int?>.Index) {
-        // TODO: add animation
         let tile = game.tiles[tileIndex]
-        tileViews[tileIndex].value = tile
+        let tileView = tileViews[tileIndex]
+        tileView.value = tile
+        tileView.show(duration: animationDuration.show)
     }
 }

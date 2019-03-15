@@ -36,6 +36,7 @@ import UIKit
                 label.layer.cornerRadius = cornerRadius
                 
             }
+            
             label.textColor = tileTextColor
             
             if value != nil { //set value tile and bgcolor
@@ -121,6 +122,18 @@ extension Tile2048View {
         default:
             return #colorLiteral(red: 0.9765, green: 0.9647, blue: 0.949, alpha: 1)
         }
+    }
+}
+
+//animation for Tile2048View
+extension UIView {
+    func show(duration: CFTimeInterval) {
+        self.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+        self.alpha = 0
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.alpha = 1.0
+        }, completion: nil)
     }
 }
 
