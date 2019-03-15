@@ -29,25 +29,34 @@ class Game2048ViewController: UIViewController {
 
 //gameplay
 extension Game2048ViewController {
-    
     func runNewGame() {
         game = Game2048(boardSize: boardSize)
-        
-        addNewRandomTile()
-        addNewRandomTile()
-        
         updateViewFromModelGame2048()
-    }
-    
-    func addNewRandomTile() {
-        let tileIndex = game.addNewRandomTile()
         
-        // TODO: add animation
-        updateOneTile2048View(for: tileIndex)
+        addNewRandomTile()
+        addNewRandomTile()
     }
     
+    @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
+        addNewRandomTile()
+    }
+    
+    @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
+        addNewRandomTile()
+    }
+    
+    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+        addNewRandomTile()
+    }
+    
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        addNewRandomTile()
+    }
+}
+
+//animation and model to view logic
+extension Game2048ViewController {
     func updateViewFromModelGame2048() {
-        // TODO: implement func updateViewFromModelGame2048
         for x in 0..<boardSize {
             for y in 0..<boardSize {
                 let tile = game.tiles[y + x * boardSize]
@@ -55,18 +64,25 @@ extension Game2048ViewController {
             }
         }
         
-//        if tileViews.filter( { $0.isHidden } ).count != boardSize * boardSize {
-//            for x in 0..<viewBoardSize {
-//                for y in 0..<viewBoardSize {
-//                    if x > boardSize || y > boardSize {
-//                        tileViews[y + x * viewBoardSize].isHidden = true
-//                    }
-//                }
-//            }
-//        }
+        //        if tileViews.filter( { $0.isHidden } ).count != boardSize * boardSize {
+        //            for x in 0..<viewBoardSize {
+        //                for y in 0..<viewBoardSize {
+        //                    if x > boardSize || y > boardSize {
+        //                        tileViews[y + x * viewBoardSize].isHidden = true
+        //                    }
+        //                }
+        //            }
+        //        }
+    }
+    
+    func addNewRandomTile() {
+        let tileIndex = game.addNewRandomTile()
+        updateOneTile2048View(for: tileIndex)
     }
     
     func updateOneTile2048View(for tileIndex: Array<Int?>.Index) {
-        // TODO: implement func updateOneTile2048View
+        // TODO: add animation
+        let tile = game.tiles[tileIndex]
+        tileViews[tileIndex].value = tile
     }
 }

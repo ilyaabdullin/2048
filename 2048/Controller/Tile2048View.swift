@@ -34,8 +34,9 @@ import UIKit
                 label.adjustsFontSizeToFitWidth = true
                 label.baselineAdjustment = .alignCenters
                 label.layer.cornerRadius = cornerRadius
-                label.textColor = tileTextColor
+                
             }
+            label.textColor = tileTextColor
             
             if value != nil { //set value tile and bgcolor
                 label.layer.backgroundColor = tileBackgroundColor.cgColor
