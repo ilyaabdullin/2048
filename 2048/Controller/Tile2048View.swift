@@ -2,14 +2,14 @@
 //  Tile2048View.swift
 //  2048
 //
-//  Created by Ilya Abdullin on 08/03/2019.
+//  Created by Ilya Abdullin on 15/03/2019.
 //  Copyright © 2019 Ilya Abdullin. All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable class Tile2048View: UIView {
-
+    
     var value: Int? = 2 {
         didSet {
             setNeedsDisplay()
@@ -19,11 +19,12 @@ import UIKit
     var label : UIBorderedLabel!
     
     override func draw(_ rect: CGRect) {
-        //if !isHidden {
-            backgroundColor = .clear
+        if !isHidden {
+            layer.backgroundColor = UIColor.clear.cgColor
+            autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
             if label == nil { //perform label
-                label = UIBorderedLabel(frame: CGRect(origin: CGPoint.zero, size: frame.size))
+                label = UIBorderedLabel(frame: CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: frame.size.width - margin * 2, height: frame.size.height - margin * 2)))
                 label.rightInset = padding
                 label.leftInset = padding
                 label.textAlignment = .center
@@ -48,9 +49,8 @@ import UIKit
             if !label.isDescendant(of: self) { //add label if this need
                 addSubview(label)
             }
-        //}
+        }
     }
-
 }
 
 //constants and draw func
@@ -61,6 +61,10 @@ extension Tile2048View {
     
     private var padding: CGFloat {
         return 2.0
+    }
+    
+    private var margin: CGFloat {
+        return bounds.size.height * 0.1
     }
     
     private var tileBackgroundColor: UIColor {

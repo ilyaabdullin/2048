@@ -23,7 +23,7 @@ class Game2048ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //runNewGame();
+        runNewGame();
     }
 }
 
@@ -55,15 +55,15 @@ extension Game2048ViewController {
             }
         }
         
-        if tileViews.filter( { $0.isHidden } ).count != boardSize * boardSize {
-            for x in 0..<viewBoardSize {
-                for y in 0..<viewBoardSize {
-                    if x > boardSize || y > boardSize {
-                        //tileViews[y + x * viewBoardSize].isHidden = true
-                    }
-                }
-            }
-        }
+//        if tileViews.filter( { $0.isHidden } ).count != boardSize * boardSize {
+//            for x in 0..<viewBoardSize {
+//                for y in 0..<viewBoardSize {
+//                    if x > boardSize || y > boardSize {
+//                        tileViews[y + x * viewBoardSize].isHidden = true
+//                    }
+//                }
+//            }
+//        }
     }
     
     func updateOneTile2048View(for tileIndex: Array<Int?>.Index) {
