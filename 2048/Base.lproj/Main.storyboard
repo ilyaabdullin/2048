@@ -551,13 +551,6 @@
                         <outletCollection property="tileViews" destination="KGN-Zg-Wsv" collectionClass="NSMutableArray" id="iir-08-PiR"/>
                         <outletCollection property="tileViews" destination="3Zh-Xi-TqV" collectionClass="NSMutableArray" id="Jnr-DY-INC"/>
                         <outletCollection property="tileViews" destination="PjF-DT-hK6" collectionClass="NSMutableArray" id="ljx-hU-Ung"/>
-                        <outletCollection property="tileViews" destination="V8C-wb-2Db" collectionClass="NSMutableArray" id="tnb-31-iCy"/>
-                        <outletCollection property="tileViews" destination="ykE-bo-KBg" collectionClass="NSMutableArray" id="QeX-QQ-sG3"/>
-                        <outletCollection property="tileViews" destination="NPu-2C-QoZ" collectionClass="NSMutableArray" id="dCs-p1-HM9"/>
-                        <outletCollection property="tileViews" destination="fG7-D0-6TW" collectionClass="NSMutableArray" id="HyN-82-KTk"/>
-                        <outletCollection property="tileViews" destination="r12-H5-XF1" collectionClass="NSMutableArray" id="L1N-iS-o1v"/>
-                        <outletCollection property="tileViews" destination="th2-07-JZF" collectionClass="NSMutableArray" id="ugN-gP-EIB"/>
-                        <outletCollection property="tileViews" destination="9QI-DU-qds" collectionClass="NSMutableArray" id="plX-v1-hcc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

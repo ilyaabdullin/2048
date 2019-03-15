@@ -38,13 +38,12 @@ class Game2048 {
         tiles = [Int?](repeating: nil, count: gameBoardSize * gameBoardSize) //fill tiles with nils
     }
 
-    func addRandomTile() {
+    func addNewRandomTile() -> Array<Int?>.Index {
         let randomIndex = tiles.indices.filter{tiles[$0] == nil}.randomElement()!
         tiles[randomIndex] = getRandomTile2048Value()
+        return randomIndex
     }
 }
-
-
 
 //supporting funcs
 extension Game2048 {

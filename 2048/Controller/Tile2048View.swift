@@ -10,9 +10,8 @@ import UIKit
 
 @IBDesignable class Tile2048View: UIView {
 
-    var value: Int? = 8192 {
+    var value: Int? = 2 {
         didSet {
-            label.text = String(value!)
             setNeedsDisplay()
         }
     }
@@ -20,7 +19,7 @@ import UIKit
     var label : UIBorderedLabel!
     
     override func draw(_ rect: CGRect) {
-        if !isHidden {
+        //if !isHidden {
             backgroundColor = .clear
             
             if label == nil { //perform label
@@ -49,7 +48,7 @@ import UIKit
             if !label.isDescendant(of: self) { //add label if this need
                 addSubview(label)
             }
-        }
+        //}
     }
 
 }
