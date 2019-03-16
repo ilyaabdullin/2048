@@ -37,35 +37,35 @@ extension Game2048ViewController {
         addNewRandomTile()
     }
     
-    enum swipeDirection {
-        case up, down, left, right
-    }
-    
     @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
+        shiftTiles(to: .up)
         addNewRandomTile()
     }
     
     @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
+        shiftTiles(to: .down)
         addNewRandomTile()
     }
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+        shiftTiles(to: .left)
         addNewRandomTile()
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        shiftTiles(to: .right)
         addNewRandomTile()
     }
 }
 
-//animation and model to view logic
+//animation and logic for updating model to view
 extension Game2048ViewController {
     
-    struct animationDuration {
+    private struct animationDuration {
         static var show = 0.3
     }
     
-    func updateViewFromModelGame2048() {
+    private func updateViewFromModelGame2048() {
         for x in 0..<boardSize {
             for y in 0..<boardSize {
                 let tile = game.tiles[y + x * boardSize]
@@ -84,15 +84,34 @@ extension Game2048ViewController {
         //        }
     }
     
-    func addNewRandomTile() {
+    private func addNewRandomTile() {
         let tileIndex = game.addNewRandomTile()
         updateOneTile2048View(for: tileIndex)
     }
     
-    func updateOneTile2048View(for tileIndex: Array<Int?>.Index) {
+    private func updateOneTile2048View(for tileIndex: Array<Int?>.Index) {
         let tile = game.tiles[tileIndex]
         let tileView = tileViews[tileIndex]
         tileView.value = tile
         tileView.show(duration: animationDuration.show)
     }
+    
+    //the process of shifting tiles has 3 step
+    //for example we have next 8 tiles row 2  ⃞ 2  ⃞ 2  ⃞ 2 and we shifting that to RIGHT
+    //on step 1 shifting all tiles to right: 2  ⃞ 2  ⃞ 2  ⃞ 2 →  ⃞  ⃞  ⃞  ⃞ 2 2 2 2
+    //on step 2 merging (with summing the values) all nearby equal tiles with shift to right:  ⃞  ⃞  ⃞  ⃞ 2 2 2 2 →  ⃞  ⃞  ⃞  ⃞  ⃞ 4  ⃞ 4
+    //on step 3 shifting all tiles to right again:  ⃞  ⃞  ⃞  ⃞  ⃞ 4  ⃞ 4 →  ⃞  ⃞  ⃞  ⃞  ⃞  ⃞ 4 4
+    private func shiftTiles(to direction: Game2048.swipeDirection) {
+        game.shiftTiles(to: direction)
+        game.mergeNearbyEqualTiles(to: direction)
+        //game.shiftTiles(to: direction)
+        
+        updateViewFromModelGame2048()
+    }
+}
+
+//another stuff and supporting
+extension Game2048ViewController {
+    
+    
 }

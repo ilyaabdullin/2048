@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable class Tile2048View: UIView {
     
-    var value: Int? = 2 {
+    var value: Int? = 1024 {
         didSet {
             setNeedsDisplay()
         }
@@ -55,7 +55,7 @@ import UIKit
     }
 }
 
-//constants and draw func
+//constants and calculated variables for drawing view
 extension Tile2048View {
     private var cornerRadius: CGFloat {
         return bounds.size.height * 0.1
@@ -126,7 +126,7 @@ extension Tile2048View {
 }
 
 //animation for Tile2048View
-extension UIView {
+extension Tile2048View {
     func show(duration: CFTimeInterval) {
         self.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
         self.alpha = 0
@@ -137,7 +137,7 @@ extension UIView {
     }
 }
 
-//it is for add padding for tile with more than two numbers
+//it is subclass of UILabel with supporting padding for text inside label
 class UIBorderedLabel: UILabel {
     
     var topInset:       CGFloat = 0
