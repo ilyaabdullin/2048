@@ -8,6 +8,18 @@
 
 import Foundation
 
+class Tile2048 {
+    var value: Int
+    
+    init(value: Int) {
+        self.value = value
+    }
+    
+    convenience init(power: Int) {
+        self.init(value: Int(2.pow(Double(power))))
+    }
+}
+
 class Game2048 {
     
     var gameBoardSize: Int { //size of game board
@@ -103,7 +115,7 @@ class Game2048 {
             line.reverse()
         }
         
-        //moving tiles with value to begin of line, using whatever is like a bubble sort
+        //shifting tiles with value to begin of line, using whatever is like a bubble sort
         var firstIndexWithTile = line.indices.filter{ line[$0] != nil }.first
         
         while firstIndexWithTile != nil {
@@ -125,8 +137,8 @@ class Game2048 {
     
     func mergeNearbyEqualTiles(to direction: Game2048.swipeDirection) {
         // TODO: implement func shiftTiles
+        
     }
-    
     
     init(boardSize gameBoardSize: Int = 4) {
         self.gameBoardSize = gameBoardSize
@@ -142,5 +154,11 @@ extension Game2048 {
     
     enum swipeDirection {
         case up, down, left, right
+    }
+}
+
+extension Int {
+    func pow (_ power: Double) -> Double {
+        return Foundation.pow(Double(self), power)
     }
 }

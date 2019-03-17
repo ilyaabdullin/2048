@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C02D738223A466B004031EE /* Game2048.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D737223A466B004031EE /* Game2048.swift */; };
 		2C7619CB223B8D8C00F4D86A /* Tile2048View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7619CA223B8D8C00F4D86A /* Tile2048View.swift */; };
+		2C7619CE223E7BDA00F4D86A /* Board2048View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7619CD223E7BD900F4D86A /* Board2048View.swift */; };
 		2C7CCBB322324F68001A3BD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CCBB222324F68001A3BD1 /* AppDelegate.swift */; };
 		2C7CCBB522324F68001A3BD1 /* Game2048ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CCBB422324F68001A3BD1 /* Game2048ViewController.swift */; };
 		2C7CCBB822324F68001A3BD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CCBB622324F68001A3BD1 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		2C02D737223A466B004031EE /* Game2048.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2048.swift; sourceTree = "<group>"; };
 		2C7619CA223B8D8C00F4D86A /* Tile2048View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile2048View.swift; sourceTree = "<group>"; };
+		2C7619CD223E7BD900F4D86A /* Board2048View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board2048View.swift; sourceTree = "<group>"; };
 		2C7CCBAF22324F68001A3BD1 /* 2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7CCBB222324F68001A3BD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C7CCBB422324F68001A3BD1 /* Game2048ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2048ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C7619CC223D228800F4D86A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C7619CA223B8D8C00F4D86A /* Tile2048View.swift */,
+				2C7619CD223E7BD900F4D86A /* Board2048View.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2C7CCBA622324F68001A3BD1 = {
 			isa = PBXGroup;
 			children = (
@@ -59,8 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				2C7CCBB622324F68001A3BD1 /* Main.storyboard */,
-				2C7CCBC622324FA8001A3BD1 /* Controller */,
 				2C7CCBC522324F9B001A3BD1 /* Model */,
+				2C7619CC223D228800F4D86A /* View */,
+				2C7CCBC622324FA8001A3BD1 /* Controller */,
 				2C7CCBC422324F8C001A3BD1 /* Supporting Files */,
 				2C7CCBBE22324F6B001A3BD1 /* Info.plist */,
 			);
@@ -89,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				2C7CCBB422324F68001A3BD1 /* Game2048ViewController.swift */,
-				2C7619CA223B8D8C00F4D86A /* Tile2048View.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +178,7 @@
 			files = (
 				2C7619CB223B8D8C00F4D86A /* Tile2048View.swift in Sources */,
 				2C7CCBB522324F68001A3BD1 /* Game2048ViewController.swift in Sources */,
+				2C7619CE223E7BDA00F4D86A /* Board2048View.swift in Sources */,
 				2C02D738223A466B004031EE /* Game2048.swift in Sources */,
 				2C7CCBB322324F68001A3BD1 /* AppDelegate.swift in Sources */,
 			);

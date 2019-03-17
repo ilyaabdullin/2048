@@ -18,89 +18,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBG-g8-Jm7" userLabel="1_1" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="65" y="218" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5y-cO-qsb" customClass="Board2048View" customModule="_048" customModuleProvider="target">
+                                <rect key="frame" x="10" y="351" width="394" height="394"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9k-6j-edd" userLabel="1_2" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="129" y="218" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTy-XW-DE6" userLabel="1_3" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="193" y="218" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gjf-M9-70Q" userLabel="1_4" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="257" y="218" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lBK-6r-cmV" userLabel="2_1" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="65" y="282" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Txf-gK-hzL" userLabel="2_2" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="129" y="282" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-KN-KX6" userLabel="2_3" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="193" y="282" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oK7-A0-qCM" userLabel="2_4" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="257" y="282" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qxq-zQ-Phv" userLabel="3_1" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="65" y="346" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGR-p2-PJb" userLabel="3_2" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="129" y="346" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qz5-RT-n4P" userLabel="3_3" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="193" y="346" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9c-67-9U7" userLabel="3_4" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="257" y="346" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Z5y-cO-qsb" secondAttribute="height" multiplier="1:1" id="JJb-OX-oRM"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="size">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thY-Q3-k5o" userLabel="3_1" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="65" y="410" width="64" height="64"/>
+                                <rect key="frame" x="153" y="162" width="85" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bke-aO-iUh" userLabel="3_2" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="129" y="410" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mwb-mw-4bP" userLabel="3_3" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="193" y="410" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qpb-2t-ycQ" userLabel="3_4" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="257" y="410" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="pow">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98085516691207886" green="0.97201079130172729" blue="0.9357256293296814" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Z5y-cO-qsb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lxh-15-leI"/>
+                            <constraint firstItem="Z5y-cO-qsb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="YwK-Wo-hIK"/>
+                            <constraint firstItem="Z5y-cO-qsb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="fgo-Kj-Mqd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="jcb-7v-Q8p" appends="YES" id="cA0-Kc-D3a"/>
@@ -109,24 +56,6 @@
                             <outletCollection property="gestureRecognizers" destination="vRL-ZN-yyh" appends="YES" id="ea3-vu-TyU"/>
                         </connections>
                     </view>
-                    <connections>
-                        <outletCollection property="tileViews" destination="yBG-g8-Jm7" collectionClass="NSMutableArray" id="MlI-3k-ikj"/>
-                        <outletCollection property="tileViews" destination="f9k-6j-edd" collectionClass="NSMutableArray" id="di5-ji-FBH"/>
-                        <outletCollection property="tileViews" destination="dTy-XW-DE6" collectionClass="NSMutableArray" id="UZG-Qe-bYE"/>
-                        <outletCollection property="tileViews" destination="gjf-M9-70Q" collectionClass="NSMutableArray" id="LSs-Gz-8rh"/>
-                        <outletCollection property="tileViews" destination="lBK-6r-cmV" collectionClass="NSMutableArray" id="Job-Si-gtT"/>
-                        <outletCollection property="tileViews" destination="Txf-gK-hzL" collectionClass="NSMutableArray" id="pgu-ub-Qe9"/>
-                        <outletCollection property="tileViews" destination="1Ga-KN-KX6" collectionClass="NSMutableArray" id="e2O-Yr-rRb"/>
-                        <outletCollection property="tileViews" destination="oK7-A0-qCM" collectionClass="NSMutableArray" id="QGl-Rz-LZW"/>
-                        <outletCollection property="tileViews" destination="qxq-zQ-Phv" collectionClass="NSMutableArray" id="VKE-Jx-Jhw"/>
-                        <outletCollection property="tileViews" destination="GGR-p2-PJb" collectionClass="NSMutableArray" id="h2X-cH-Clz"/>
-                        <outletCollection property="tileViews" destination="qz5-RT-n4P" collectionClass="NSMutableArray" id="1EF-wh-nkv"/>
-                        <outletCollection property="tileViews" destination="M9c-67-9U7" collectionClass="NSMutableArray" id="GY4-i3-Phk"/>
-                        <outletCollection property="tileViews" destination="thY-Q3-k5o" collectionClass="NSMutableArray" id="Fzi-ZC-FXH"/>
-                        <outletCollection property="tileViews" destination="Bke-aO-iUh" collectionClass="NSMutableArray" id="N1T-p5-0M3"/>
-                        <outletCollection property="tileViews" destination="Mwb-mw-4bP" collectionClass="NSMutableArray" id="Ndl-lY-XwP"/>
-                        <outletCollection property="tileViews" destination="qpb-2t-ycQ" collectionClass="NSMutableArray" id="klC-xL-NrU"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="up" id="jcb-7v-Q8p" userLabel="swipeUp">

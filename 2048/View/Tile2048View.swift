@@ -10,7 +10,16 @@ import UIKit
 
 @IBDesignable class Tile2048View: UIView {
     
-    var value: Int? = 1024 {
+    @IBInspectable var pow: Int = 1 {
+        didSet {
+            tile2048 = Tile2048(power: pow)
+            value = tile2048.value
+        }
+    }
+    
+    var tile2048 = Tile2048(value: 2)
+    
+    var value: Int = 2 {
         didSet {
             setNeedsDisplay()
         }
@@ -24,7 +33,8 @@ import UIKit
             autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
             if label == nil { //perform label
-                label = UIBorderedLabel(frame: CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: frame.size.width - margin * 2, height: frame.size.height - margin * 2)))
+                //label = UIBorderedLabel(frame: CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: frame.size.width - margin * 2, height: frame.size.height - margin * 2)))
+                label = UIBorderedLabel(frame: CGRect(origin: CGPoint.zero, size: frame.size))
                 label.rightInset = padding
                 label.leftInset = padding
                 label.textAlignment = .center
@@ -38,15 +48,8 @@ import UIKit
             }
             
             label.textColor = tileTextColor
-            
-            if value != nil { //set value tile and bgcolor
-                label.layer.backgroundColor = tileBackgroundColor.cgColor
-                label.text = String(value!)
-            }
-            else {
-                label.layer.backgroundColor = #colorLiteral(red: 0.8055974841, green: 0.7564521432, blue: 0.7078657746, alpha: 1)
-                label.text = ""
-            }
+            label.layer.backgroundColor = tileBackgroundColor.cgColor
+            label.text = String(value)
             
             if !label.isDescendant(of: self) { //add label if this need
                 addSubview(label)
@@ -58,16 +61,16 @@ import UIKit
 //constants and calculated variables for drawing view
 extension Tile2048View {
     private var cornerRadius: CGFloat {
-        return bounds.size.height * 0.1
+        return bounds.size.height * 0.05
     }
     
     private var padding: CGFloat {
         return 2.0
     }
     
-    private var margin: CGFloat {
-        return bounds.size.height * 0.1
-    }
+//    private var margin: CGFloat {
+//        return bounds.size.height * 0.1
+//    }
     
     private var tileBackgroundColor: UIColor {
         switch value {

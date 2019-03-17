@@ -61,17 +61,22 @@ extension Game2048ViewController {
 //animation and logic for updating model to view
 extension Game2048ViewController {
     
-    private struct animationDuration {
-        static var show = 0.3
+    //animation duration constants
+    static var durationOfOneTileAnimation: TimeInterval = 0.1
+    var showingTileDuration: TimeInterval {
+        return Game2048ViewController.durationOfOneTileAnimation * TimeInterval(boardSize)
+    }
+    var shiftingTileDuration: TimeInterval {
+        return Game2048ViewController.durationOfOneTileAnimation * TimeInterval(boardSize / 2)
     }
     
     private func updateViewFromModelGame2048() {
-        for x in 0..<boardSize {
-            for y in 0..<boardSize {
-                let tile = game.tiles[y + x * boardSize]
-                tileViews[y + x * viewBoardSize].value = tile
-            }
-        }
+//        for x in 0..<boardSize {
+//            for y in 0..<boardSize {
+//                let tile = game.tiles[y + x * boardSize]
+//                tileViews[y + x * viewBoardSize].value = tile
+//            }
+//        }
         
         //        if tileViews.filter( { $0.isHidden } ).count != boardSize * boardSize {
         //            for x in 0..<viewBoardSize {
@@ -90,23 +95,25 @@ extension Game2048ViewController {
     }
     
     private func updateOneTile2048View(for tileIndex: Array<Int?>.Index) {
-        let tile = game.tiles[tileIndex]
-        let tileView = tileViews[tileIndex]
-        tileView.value = tile
-        tileView.show(duration: animationDuration.show)
+//        let tile = game.tiles[tileIndex]
+//        let tileView = tileViews[tileIndex]
+//        tileView.value = tile
+//        tileView.show(duration: showingTileDuration)
     }
     
     //the process of shifting tiles has 3 step
-    //for example we have next 8 tiles row 2  ⃞ 2  ⃞ 2  ⃞ 2 and we shifting that to RIGHT
-    //on step 1 shifting all tiles to right: 2  ⃞ 2  ⃞ 2  ⃞ 2 →  ⃞  ⃞  ⃞  ⃞ 2 2 2 2
+    //for example we have next 8 tiles row 2  ⃞ 2  ⃞ 2  ⃞ 2  ⃞ and we shifting that to RIGHT
+    //on step 1 shifting all tiles to right: 2  ⃞ 2  ⃞ 2  ⃞ 2  ⃞ →  ⃞  ⃞  ⃞  ⃞ 2 2 2 2
     //on step 2 merging (with summing the values) all nearby equal tiles with shift to right:  ⃞  ⃞  ⃞  ⃞ 2 2 2 2 →  ⃞  ⃞  ⃞  ⃞  ⃞ 4  ⃞ 4
     //on step 3 shifting all tiles to right again:  ⃞  ⃞  ⃞  ⃞  ⃞ 4  ⃞ 4 →  ⃞  ⃞  ⃞  ⃞  ⃞  ⃞ 4 4
     private func shiftTiles(to direction: Game2048.swipeDirection) {
-        game.shiftTiles(to: direction)
-        game.mergeNearbyEqualTiles(to: direction)
-        //game.shiftTiles(to: direction)
+        game.shiftTiles(to: direction) //step 1
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
+            self.updateViewFromModelGame2048()
+        }, completion: nil)
         
-        updateViewFromModelGame2048()
+        game.mergeNearbyEqualTiles(to: direction) //step 2
+        //game.shiftTiles(to: direction) //step 3
     }
 }
 
