@@ -11,6 +11,10 @@ import Foundation
 class Tile2048 {
     var value: Int
     
+    static func getRandomValueForNewTile() -> Int {
+        return [2, 2, 2, 2, 2, 2, 2, 4].randomElement()!
+    }
+    
     init(value: Int) {
         self.value = value
     }
@@ -82,7 +86,7 @@ class Game2048 {
     
     func addNewRandomTile() -> Array<Int?>.Index {
         let randomIndex = tiles.indices.filter{tiles[$0] == nil}.randomElement()!
-        tiles[randomIndex] = getRandomTile2048Value()
+        tiles[randomIndex] = Tile2048.getRandomValueForNewTile()
         return randomIndex
     }
     
@@ -148,10 +152,6 @@ class Game2048 {
 
 //supporting funcs
 extension Game2048 {
-    private func getRandomTile2048Value() -> Int {
-        return [2, 2, 2, 2, 2, 2, 2, 4].randomElement()!
-    }
-    
     enum swipeDirection {
         case up, down, left, right
     }

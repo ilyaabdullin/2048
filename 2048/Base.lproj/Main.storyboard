@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5y-cO-qsb" customClass="Board2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="10" y="351" width="394" height="394"/>
+                                <rect key="frame" x="10" y="251" width="394" height="394"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Z5y-cO-qsb" secondAttribute="height" multiplier="1:1" id="JJb-OX-oRM"/>
@@ -30,23 +30,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thY-Q3-k5o" userLabel="3_1" customClass="Tile2048View" customModule="_048" customModuleProvider="target">
-                                <rect key="frame" x="153" y="162" width="85" height="85"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pow">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98085516691207886" green="0.97201079130172729" blue="0.9357256293296814" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Z5y-cO-qsb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lxh-15-leI"/>
                             <constraint firstItem="Z5y-cO-qsb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="YwK-Wo-hIK"/>
-                            <constraint firstItem="Z5y-cO-qsb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="fgo-Kj-Mqd"/>
+                            <constraint firstItem="Z5y-cO-qsb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fgo-Kj-Mqd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -56,6 +46,9 @@
                             <outletCollection property="gestureRecognizers" destination="vRL-ZN-yyh" appends="YES" id="ea3-vu-TyU"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="board2048View" destination="Z5y-cO-qsb" id="A4A-pS-NcK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="up" id="jcb-7v-Q8p" userLabel="swipeUp">

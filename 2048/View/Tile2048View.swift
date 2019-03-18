@@ -13,15 +13,18 @@ import UIKit
     @IBInspectable var pow: Int = 1 {
         didSet {
             tile2048 = Tile2048(power: pow)
+        }
+    }
+    
+    var tile2048 = Tile2048(value: 2) {
+        didSet {
             value = tile2048.value
         }
     }
     
-    var tile2048 = Tile2048(value: 2)
-    
     var value: Int = 2 {
         didSet {
-            setNeedsDisplay()
+            setNeedsDisplay(bounds)
         }
     }
     
@@ -35,8 +38,8 @@ import UIKit
             if label == nil { //perform label
                 //label = UIBorderedLabel(frame: CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: frame.size.width - margin * 2, height: frame.size.height - margin * 2)))
                 label = UIBorderedLabel(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-                label.rightInset = padding
-                label.leftInset = padding
+                label.rightInset = labelPadding
+                label.leftInset = labelPadding
                 label.textAlignment = .center
                 label.numberOfLines = 1
                 label.font = UIFont(name: "Helvetica-Bold", size: self.frame.height * 0.67)
@@ -64,13 +67,9 @@ extension Tile2048View {
         return bounds.size.height * 0.05
     }
     
-    private var padding: CGFloat {
+    private var labelPadding: CGFloat {
         return 2.0
     }
-    
-//    private var margin: CGFloat {
-//        return bounds.size.height * 0.1
-//    }
     
     private var tileBackgroundColor: UIColor {
         switch value {

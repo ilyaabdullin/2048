@@ -12,6 +12,8 @@ class Game2048ViewController: UIViewController {
 
     @IBOutlet var tileViews: [Tile2048View]!
     
+    @IBOutlet weak var board2048View: Board2048View!
+    
     private var viewBoardSize: Int { //count of tileViews in row or column (hope the form of views is a square)
         return Int(sqrt(Double(tileViews.count)))
     }
@@ -20,8 +22,8 @@ class Game2048ViewController: UIViewController {
     
     var boardSize = 4
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         runNewGame();
     }
@@ -30,8 +32,9 @@ class Game2048ViewController: UIViewController {
 //gameplay
 extension Game2048ViewController {
     func runNewGame() {
-        game = Game2048(boardSize: boardSize)
-        updateViewFromModelGame2048()
+        //game = Game2048(boardSize: boardSize)
+        //updateViewFromModelGame2048()
+        board2048View.size = boardSize
         
         addNewRandomTile()
         addNewRandomTile()
@@ -63,42 +66,27 @@ extension Game2048ViewController {
     
     //animation duration constants
     static var durationOfOneTileAnimation: TimeInterval = 0.1
-    var showingTileDuration: TimeInterval {
-        return Game2048ViewController.durationOfOneTileAnimation * TimeInterval(boardSize)
-    }
+    static var showingTileDuration: TimeInterval = 0.25
     var shiftingTileDuration: TimeInterval {
         return Game2048ViewController.durationOfOneTileAnimation * TimeInterval(boardSize / 2)
     }
     
-    private func updateViewFromModelGame2048() {
-//        for x in 0..<boardSize {
-//            for y in 0..<boardSize {
-//                let tile = game.tiles[y + x * boardSize]
-//                tileViews[y + x * viewBoardSize].value = tile
-//            }
-//        }
-        
-        //        if tileViews.filter( { $0.isHidden } ).count != boardSize * boardSize {
-        //            for x in 0..<viewBoardSize {
-        //                for y in 0..<viewBoardSize {
-        //                    if x > boardSize || y > boardSize {
-        //                        tileViews[y + x * viewBoardSize].isHidden = true
-        //                    }
-        //                }
-        //            }
-        //        }
-    }
-    
     private func addNewRandomTile() {
-        let tileIndex = game.addNewRandomTile()
-        updateOneTile2048View(for: tileIndex)
+        if let randomTileEmptyPlace = board2048View.tilePlaces.filter({ $0.subviews.count == 0 }).randomElement() {
+            let tile = Tile2048(value: Tile2048.getRandomValueForNewTile())
+            let tileView = Tile2048View.init(frame: randomTileEmptyPlace.bounds)
+            tileView.tile2048 = tile
+            
+            randomTileEmptyPlace.insertSubview(tileView, at: 0)
+            tileView.show(duration: Game2048ViewController.showingTileDuration)
+        }
     }
     
-    private func updateOneTile2048View(for tileIndex: Array<Int?>.Index) {
-//        let tile = game.tiles[tileIndex]
-//        let tileView = tileViews[tileIndex]
-//        tileView.value = tile
-//        tileView.show(duration: showingTileDuration)
+    func shiftTiles(to direction: UISwipeGestureRecognizer.Direction) {
+        
+        for lineIndex in 0..<board2048View.size {
+            shiftTileLine(at: lineIndex, direction: direction)
+        }
     }
     
     //the process of shifting tiles has 3 step
@@ -106,15 +94,48 @@ extension Game2048ViewController {
     //on step 1 shifting all tiles to right: 2  ⃞ 2  ⃞ 2  ⃞ 2  ⃞ →  ⃞  ⃞  ⃞  ⃞ 2 2 2 2
     //on step 2 merging (with summing the values) all nearby equal tiles with shift to right:  ⃞  ⃞  ⃞  ⃞ 2 2 2 2 →  ⃞  ⃞  ⃞  ⃞  ⃞ 4  ⃞ 4
     //on step 3 shifting all tiles to right again:  ⃞  ⃞  ⃞  ⃞  ⃞ 4  ⃞ 4 →  ⃞  ⃞  ⃞  ⃞  ⃞  ⃞ 4 4
-    private func shiftTiles(to direction: Game2048.swipeDirection) {
-        game.shiftTiles(to: direction) //step 1
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
-            self.updateViewFromModelGame2048()
-        }, completion: nil)
-        
-        game.mergeNearbyEqualTiles(to: direction) //step 2
+//    private func shiftTiles(to direction: UISwipeGestureRecognizer.Direction) {
+//        game.shiftTiles(to: direction) //step 1
+//        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
+//            self.updateViewFromModelGame2048()
+//        }, completion: nil)
+//
+//        game.mergeNearbyEqualTiles(to: direction) //step 2
         //game.shiftTiles(to: direction) //step 3
+//    }
+}
+
+//methods for shifting and merging tiles
+extension Game2048ViewController {
+    func shiftTileLine(at lineIndex: Int, direction: UISwipeGestureRecognizer.Direction) {
+        
+        var line = board2048View.getLine(by: lineIndex, to: direction)
+        
+        if direction == .down || direction == .right { //reversing array if direction of shift isn't equal to direction of next sorting
+            line.reverse()
+        }
+        
+        // MARK: shifting tiles with value to begin of line, using whatever is like a bubble sort
+        var nextTilePlaceWithTileForShifting = line.filter{ $0.subviews.count == 1 && line.firstIndex(of: $0)! > 0 }.first
+        
+        while nextTilePlaceWithTileForShifting != nil  {
+            let nextTileForShifting = nextTilePlaceWithTileForShifting!.subviews.first! as! Tile2048View
+            let targetEmptyTilePlace = line.filter{
+                ( $0.subviews.count == 0 && line.firstIndex(of: $0)! < line.firstIndex(of: nextTilePlaceWithTileForShifting!)! )
+                    || ( $0.subviews.count == 1 && ($0.subviews.first! as! Tile2048View).value == nextTileForShifting.value )
+                }.first
+            
+            if targetEmptyTilePlace != nil {
+                nextTileForShifting.removeFromSuperview()
+                targetEmptyTilePlace?.insertSubview(nextTileForShifting, at: 0)
+            }
+            
+            nextTilePlaceWithTileForShifting = line.filter{ $0.subviews.count == 1 && line.firstIndex(of: $0)! > line.firstIndex(of: nextTilePlaceWithTileForShifting!)! }.first
+        }
+        // MARK: end of shifting tiles to begin
     }
+    
+
 }
 
 //another stuff and supporting
