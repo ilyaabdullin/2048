@@ -27,9 +27,12 @@ class Game2048ViewController: UIViewController {
 extension Game2048ViewController {
     func runNewGame() {
         board2048View.size = boardSize
-        
-        addNewRandomTile()
-        addNewRandomTile()
+        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 0])
+        board2048View.add(tile: Tile2048(power: 2), to: board2048View[1, 1])
+        board2048View.add(tile: Tile2048(power: 3), to: board2048View[2, 2])
+        board2048View.add(tile: Tile2048(power: 4), to: board2048View[3, 3])
+        //addNewRandomTile()
+        //addNewRandomTile()
     }
     
     @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
@@ -74,8 +77,9 @@ extension Game2048ViewController {
     func shiftTiles(to direction: UISwipeGestureRecognizer.Direction) -> Bool {
         var isShifted = false
         
-        for lineIndex in 0..<board2048View.size {
-            isShifted = isShifted || shiftTileLine(at: lineIndex, direction: direction)
+        for lineIndex in 0..<boardSize {
+            let curLineIsShifted = shiftTileLine(at: lineIndex, direction: direction)
+            isShifted = isShifted || curLineIsShifted
         }
         
         return isShifted
@@ -90,14 +94,14 @@ extension Game2048ViewController {
             line.reverse()
         }
         
-        //shifting tiles with value to begin of line, using whatever is like a bubble sort
+        //start of shifting tiles to begin of line, using whatever is like a bubble sort
         var nextTilePlaceWithTileForShifting = line.filter{ $0.tiles.count == 1 && line.firstIndex(of: $0)! > 0 }.first
         
         while nextTilePlaceWithTileForShifting != nil  {
             let nextTileForShifting = nextTilePlaceWithTileForShifting!.tiles.first!
             if let targetEmptyTilePlace = line.filter({
-                ( $0.tiles.count == 0 && line.firstIndex(of: $0)! < line.firstIndex(of: nextTilePlaceWithTileForShifting!)! )
-                    || ( $0.subviews.count == 1 && ($0.tiles.first!).value == nextTileForShifting.value )
+                   ( $0.tiles.count == 0 && line.firstIndex(of: $0)! < line.firstIndex(of: nextTilePlaceWithTileForShifting!)! )
+                || ( $0.tiles.count == 1 && ($0.tiles.first!).value == nextTileForShifting.value )
             }).first {
                 board2048View.moveTile(from: nextTilePlaceWithTileForShifting!, to: targetEmptyTilePlace, withDurationPerTile: Game2048ViewController.durationOfOneTileAnimation)
                 isShifted = true

@@ -116,7 +116,7 @@ extension Board2048View {
         tilePlace.tiles.append(tileView)
         self.insertSubview(tileView, at: 1000)
         
-        tileView.show(duration: Game2048ViewController.showingTileDuration)
+        tileView.show(withDuration: Game2048ViewController.showingTileDuration)
     }
     
     func moveTile(from: TilePlace2048View, to: TilePlace2048View, withDurationPerTile duration: CFTimeInterval) {
