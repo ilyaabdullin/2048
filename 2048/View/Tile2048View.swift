@@ -29,39 +29,9 @@ import UIKit
     }
     
     var label : UIBorderedLabel!
-    
-    override func draw(_ rect: CGRect) {
-        if !isHidden {
-            layer.backgroundColor = UIColor.clear.cgColor
-            autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            if label == nil { //perform label
-                //label = UIBorderedLabel(frame: CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: frame.size.width - margin * 2, height: frame.size.height - margin * 2)))
-                label = UIBorderedLabel(frame: CGRect(origin: CGPoint.zero, size: frame.size))
-                label.rightInset = labelPadding
-                label.leftInset = labelPadding
-                label.textAlignment = .center
-                label.numberOfLines = 1
-                label.font = UIFont(name: "Helvetica-Bold", size: self.frame.height * 0.67)
-                label.minimumScaleFactor = 1 / self.label.font.pointSize
-                label.adjustsFontSizeToFitWidth = true
-                label.baselineAdjustment = .alignCenters
-                label.layer.cornerRadius = cornerRadius
-                
-            }
-            
-            label.textColor = tileTextColor
-            label.layer.backgroundColor = tileBackgroundColor.cgColor
-            label.text = String(value)
-            
-            if !label.isDescendant(of: self) { //add label if this need
-                addSubview(label)
-            }
-        }
-    }
 }
 
-//constants and calculated variables for drawing view
+//drawing
 extension Tile2048View {
     private var cornerRadius: CGFloat {
         return bounds.size.height * 0.05
@@ -123,6 +93,35 @@ extension Tile2048View {
         case 2, 4, 268435456, 536870912: return #colorLiteral(red: 0.4667, green: 0.4314, blue: 0.3961, alpha: 1)
         default:
             return #colorLiteral(red: 0.9765, green: 0.9647, blue: 0.949, alpha: 1)
+        }
+    }
+    
+    override func draw(_ rect: CGRect) {
+        if !isHidden {
+            layer.backgroundColor = UIColor.clear.cgColor
+            bounds.size.height = bounds.size.width
+            
+            if label == nil { //perform label
+                label = UIBorderedLabel(frame: CGRect(origin: CGPoint.zero, size: frame.size))
+                label.rightInset = labelPadding
+                label.leftInset = labelPadding
+                label.textAlignment = .center
+                label.numberOfLines = 1
+                label.font = UIFont(name: "Helvetica-Bold", size: self.frame.height * 0.67)
+                label.minimumScaleFactor = 1 / self.label.font.pointSize
+                label.adjustsFontSizeToFitWidth = true
+                label.baselineAdjustment = .alignCenters
+                label.layer.cornerRadius = cornerRadius
+                
+            }
+            
+            label.textColor = tileTextColor
+            label.layer.backgroundColor = tileBackgroundColor.cgColor
+            label.text = String(value)
+            
+            if !label.isDescendant(of: self) { //add label if this need
+                addSubview(label)
+            }
         }
     }
 }
