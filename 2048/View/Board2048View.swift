@@ -41,6 +41,11 @@ import UIKit
             }
         }
     }
+    
+    //animation duration properties
+    var durationOfMovingToOneTileAnimation: TimeInterval = 0.05
+    var maxDurationOfMoving: TimeInterval = 0.4
+    var showingAndMergingTileDuration: TimeInterval = 0.4 * 5
 }
 
 //methods and subscript for getting each tile place and each row and column of tile places
@@ -116,16 +121,24 @@ extension Board2048View {
         tilePlace.tiles.append(tileView)
         self.insertSubview(tileView, at: 1000)
         
-        tileView.show(withDuration: Game2048ViewController.showingTileDuration)
+        tileView.startShowingAnimation(withDuration: showingAndMergingTileDuration, andDelay: min(durationOfMovingToOneTileAnimation * Double(size/2), maxDurationOfMoving / 2))
     }
     
-    func moveTile(from: TilePlace2048View, to: TilePlace2048View, withDurationPerTile duration: CFTimeInterval) {
+    func moveTileWithMerging(from: TilePlace2048View, to: TilePlace2048View) {
         if from.tiles.count > 0 {
             let tile = from.tiles.remove(at: 0)
             to.tiles.append(tile)
             
-            UIView.animate(withDuration: min(duration * Double(abs(distance(from: from, to: to)!)), 0.4) ) {
+            let duration = min(durationOfMovingToOneTileAnimation * Double(abs(distance(from: from, to: to)!)), maxDurationOfMoving)
+            
+            UIView.animate(withDuration: duration, animations: {
                 tile.frame = to.frame
+            }) { (finished) in
+                if !finished {
+                    return
+                }
+                
+                self.mergeTiles(in: to)
             }
         }
     }
@@ -136,10 +149,11 @@ extension Board2048View {
                 if firstTile !== tile {
                     firstTile.tile2048 = Tile2048(value: firstTile.tile2048.value + tile.tile2048.value)
                     remove(tile: tile, from: tilePlaceWithTileForMerging)
+                    
+                    firstTile.startMergingAnimation(withDuration: showingAndMergingTileDuration)
                 }
-            }
+            } 
         }
-        
     }
     
     func remove(tile: Tile2048View, from: TilePlace2048View) {

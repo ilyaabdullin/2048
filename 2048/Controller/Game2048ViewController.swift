@@ -14,33 +14,31 @@ class Game2048ViewController: UIViewController {
     
     private var game: Game2048!
     
-    var boardSize = 4
+    var boardSize = 10
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        //send animation properties to board2048View
+        board2048View.durationOfMovingToOneTileAnimation = durationOfMovingToOneTileAnimation
+        board2048View.maxDurationOfMoving = maxDurationOfMoving
+        board2048View.showingAndMergingTileDuration = showingAndMergingTileDuration
+        
         runNewGame();
     }
+    
+    //animation duration properties
+    var durationOfMovingToOneTileAnimation: TimeInterval = 0.05
+    var maxDurationOfMoving: TimeInterval = 0.4
+    var showingAndMergingTileDuration: TimeInterval { return durationOfMovingToOneTileAnimation * 5 }
 }
 
 //gameplay
 extension Game2048ViewController {
     func runNewGame() {
         board2048View.size = boardSize
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 0])
-//        board2048View.add(tile: Tile2048(power: 2), to: board2048View[1, 1])
-//        board2048View.add(tile: Tile2048(power: 3), to: board2048View[2, 2])
-//        board2048View.add(tile: Tile2048(power: 4), to: board2048View[3, 3])
-        
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 0])
-//        board2048View.add(tile: Tile2048(power: 2), to: board2048View[0, 1])
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 2]) // to left -> will not changing
-        
-        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 0])
-        board2048View.add(tile: Tile2048(power: 2), to: board2048View[0, 1])
-        board2048View.add(tile: Tile2048(power: 3), to: board2048View[0, 3]) // to left -> will move last tile
-//        addNewRandomTile()
-//        addNewRandomTile()
+        addNewRandomTile()
+        addNewRandomTile()
     }
     
     @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
@@ -72,8 +70,7 @@ extension Game2048ViewController {
     }
     
     func shiftMergeAndAddNewTile(to direction: UISwipeGestureRecognizer.Direction) {
-        if shiftTiles(to: direction) { // TODO: fix bug with return of shiftTiles (now is returning true always)
-            mergeTiles()
+        if shiftTilesWithMerging(to: direction) {
             addNewRandomTile()
         }
     }
@@ -84,18 +81,18 @@ extension Game2048ViewController {
         }
     }
     
-    func shiftTiles(to direction: UISwipeGestureRecognizer.Direction) -> Bool {
+    func shiftTilesWithMerging(to direction: UISwipeGestureRecognizer.Direction) -> Bool {
         var isShifted = false
         
         for lineIndex in 0..<boardSize {
-            let currentLineIsShifted = shiftTileLine(at: lineIndex, direction: direction)
+            let currentLineIsShifted = shiftTileLineWithMerging(at: lineIndex, direction: direction)
             isShifted = isShifted || currentLineIsShifted
         }
         
         return isShifted
     }
     
-    func shiftTileLine(at lineIndex: Int, direction: UISwipeGestureRecognizer.Direction) -> Bool {
+    func shiftTileLineWithMerging(at lineIndex: Int, direction: UISwipeGestureRecognizer.Direction) -> Bool {
         var isShifted = false
         
         var line = board2048View.getLine(by: lineIndex, to: direction)
@@ -121,8 +118,8 @@ extension Game2048ViewController {
                 targetPlace = firstEmptyTilePlaceOnLeft //target place for moving tile to empty place
             }
             
-            if targetPlace != nil { //moving tile if getting target tile place
-                board2048View.moveTile(from: nextTilePlaceWithTileForShifting!, to: targetPlace!, withDurationPerTile: Game2048ViewController.durationOfOneTileAnimation)
+            if targetPlace != nil { //moving tile if getting target tile place and merging if this need
+                board2048View.moveTileWithMerging(from: nextTilePlaceWithTileForShifting!, to: targetPlace!)
 
                 isShifted = true
             }
@@ -133,11 +130,4 @@ extension Game2048ViewController {
         
         return isShifted
     }
-}
-
-//animation duration constants
-extension Game2048ViewController {
-    
-    static var durationOfOneTileAnimation: TimeInterval = 0.1
-    static var showingTileDuration: TimeInterval = 0.25
 }

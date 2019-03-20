@@ -128,13 +128,21 @@ extension Tile2048View {
 
 //animation for Tile2048View
 extension Tile2048View {
-    func show(withDuration duration: CFTimeInterval) {
+    func startShowingAnimation(withDuration duration: CFTimeInterval, andDelay delay: CFTimeInterval) { // TODO: add delay
         self.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
         self.alpha = 0
-        UIView.animate(withDuration: duration, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.5, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
             self.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.alpha = 1.0
         }, completion: nil)
+    }
+    
+    func startMergingAnimation(withDuration duration: CFTimeInterval) {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        }, completion: { _ in
+            self.transform = .identity
+        })
     }
 }
 
