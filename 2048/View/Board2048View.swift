@@ -124,18 +124,27 @@ extension Board2048View {
             let tile = from.tiles.remove(at: 0)
             to.tiles.append(tile)
             
-            UIView.animate(withDuration: duration * Double(abs(distance(from: from, to: to)!))) {
+            UIView.animate(withDuration: min(duration * Double(abs(distance(from: from, to: to)!)), 0.4) ) {
                 tile.frame = to.frame
             }
         }
     }
     
-    func removeTile(from: TilePlace2048View) {
-        // TODO: implement func removeTile
+    func mergeTiles(in tilePlaceWithTileForMerging: TilePlace2048View) {
+        if let firstTile = tilePlaceWithTileForMerging.tiles.first {
+            for tile in tilePlaceWithTileForMerging.tiles {
+                if firstTile !== tile {
+                    firstTile.tile2048 = Tile2048(value: firstTile.tile2048.value + tile.tile2048.value)
+                    remove(tile: tile, from: tilePlaceWithTileForMerging)
+                }
+            }
+        }
+        
     }
     
-    func mergeTiles(for: TilePlace2048View) {
-        // TODO: implement func removeTile
+    func remove(tile: Tile2048View, from: TilePlace2048View) {
+        tile.removeFromSuperview()
+        from.tiles.remove(at: from.tiles.firstIndex(of: tile)!)
     }
 }
 
