@@ -14,7 +14,9 @@ class Game2048ViewController: UIViewController {
     
     private var game: Game2048!
     
-    var boardSize = 10
+    var boardSize = 4
+    
+    var isGameOver = false
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -37,24 +39,45 @@ class Game2048ViewController: UIViewController {
 extension Game2048ViewController {
     func runNewGame() {
         board2048View.size = boardSize
+        
+//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 0])
+//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 1])
+//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 2])
+//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 3])
+//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 4])
+//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 5])
+//        board2048View.add(tile: Tile2048(power: 2), to: board2048View[0, 6])
+//        board2048View.add(tile: Tile2048(power: 3), to: board2048View[0, 7])
+//        board2048View.add(tile: Tile2048(power: 4), to: board2048View[0, 8])
+//        board2048View.add(tile: Tile2048(power: 5), to: board2048View[0, 9])
+        
         addNewRandomTile()
         addNewRandomTile()
     }
     
     @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
-        shiftMergeAndAddNewTile(to: .up)
+        if !isGameOver {
+            shiftMergeAndAddNewTile(to: .up)
+        }
+        
     }
     
     @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
-        shiftMergeAndAddNewTile(to: .down)
+        if !isGameOver {
+            shiftMergeAndAddNewTile(to: .down)
+        }
     }
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
-        shiftMergeAndAddNewTile(to: .left)
+        if !isGameOver {
+            shiftMergeAndAddNewTile(to: .left)
+        }
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
-        shiftMergeAndAddNewTile(to: .right)
+        if !isGameOver {
+            shiftMergeAndAddNewTile(to: .right)
+        }
     }
 }
 
@@ -72,6 +95,11 @@ extension Game2048ViewController {
     func shiftMergeAndAddNewTile(to direction: UISwipeGestureRecognizer.Direction) {
         if shiftTilesWithMerging(to: direction) {
             addNewRandomTile()
+        }
+        else {
+            board2048View.tilePlaces.map({ $0.tiles.first }).forEach { (tile) in
+                tile?.startFailedShifting(to: direction, withDuration: showingAndMergingTileDuration)
+            }
         }
     }
     
@@ -104,12 +132,12 @@ extension Game2048ViewController {
         //start of shifting tiles to begin of line
         var nextTilePlaceWithTileForShifting = line.filter{ $0.tiles.count == 1 && line.firstIndex(of: $0)! > 0 }.first
         while nextTilePlaceWithTileForShifting != nil {
-            let nextTileForShifting = nextTilePlaceWithTileForShifting!.tiles.first!
             let nextTilePlaceWithTileForShiftingIndex = line.firstIndex(of: nextTilePlaceWithTileForShifting!)!
             var targetPlace: TilePlace2048View?
             
-            if let lastNonEmptyTilePlaceOnTheLeft = line.filter({ $0.tiles.count == 1 && line.firstIndex(of: $0)! < nextTilePlaceWithTileForShiftingIndex}).last { //getting nearest tile place with tile on the left of current tile
-                if lastNonEmptyTilePlaceOnTheLeft.tiles.first!.value == nextTileForShifting.value {
+            if let lastNonEmptyTilePlaceOnTheLeft = line.filter({ $0.tiles.count > 0 && line.firstIndex(of: $0)! < nextTilePlaceWithTileForShiftingIndex}).last { //getting nearest tile place with tile on the left of current tile
+                if lastNonEmptyTilePlaceOnTheLeft.tiles.count == nextTilePlaceWithTileForShifting!.tiles.count
+                    && lastNonEmptyTilePlaceOnTheLeft.sumTiles == nextTilePlaceWithTileForShifting!.sumTiles {
                     targetPlace = lastNonEmptyTilePlaceOnTheLeft //target place for moving tile on the place of tile twin with next merging
                 }
             }

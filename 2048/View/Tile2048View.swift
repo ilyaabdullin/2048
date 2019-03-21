@@ -144,6 +144,32 @@ extension Tile2048View {
             self.transform = .identity
         })
     }
+    
+    func startFailedShifting(to direction: UISwipeGestureRecognizer.Direction, withDuration duration: CFTimeInterval) {
+        let delta: CGFloat = 0.4 * bounds.height
+        var deltaPoint: CGPoint {
+            switch direction {
+            case .up:
+                return CGPoint(x: 0, y: -delta)
+            case .down:
+                return CGPoint(x: 0, y: delta)
+            case .left:
+                return CGPoint(x: -delta, y: 0)
+            case .right:
+                return CGPoint(x: delta, y: 0)
+            default:
+                return CGPoint(x: 0, y: 0)
+            }
+        }
+        
+        UIView.animate(withDuration: duration / 2, animations: {
+            self.frame.origin = CGPoint(x: self.frame.origin.x + deltaPoint.x, y: self.frame.origin.y + deltaPoint.y)
+        }, completion: { _ in
+            UIView.animate(withDuration: duration / 2, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 7, options: .curveEaseOut, animations: {
+                self.frame.origin = CGPoint(x: self.frame.origin.x - deltaPoint.x, y: self.frame.origin.y - deltaPoint.y)
+            }, completion: nil)
+        })
+    }
 }
 
 //it is subclass of UILabel with supporting padding for text inside label

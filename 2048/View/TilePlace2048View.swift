@@ -11,6 +11,10 @@ import UIKit
 @IBDesignable class TilePlace2048View: UIView {
     
     var tiles = [Tile2048View]()
+    
+    var sumTiles: Int {
+        return tiles.map{$0.value}.reduce(0, +)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
