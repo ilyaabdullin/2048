@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Game2048ViewController: UIViewController {
+class Game2048ViewController: UIViewController, UIApplicationDelegate {
     
     @IBOutlet weak var board2048View: Board2048View!
     
@@ -18,7 +18,9 @@ class Game2048ViewController: UIViewController {
     
     @IBOutlet weak var tryAgainButton: Button2048View!
     
-    var boardSize = 2 { didSet{ board2048View.size = boardSize } }
+    var boardSize = 4 { didSet{ board2048View.size = boardSize } }
+    
+    var isNewGame = false
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -28,7 +30,13 @@ class Game2048ViewController: UIViewController {
         board2048View.maxDurationOfMoving = maxDurationOfMoving
         board2048View.showingAndMergingTileDuration = showingAndMergingTileDuration
         
-        runNewGame();
+        if isNewGame || !loadGameData() { //load game if it's not a resuming
+            runNewGame()
+        }
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        saveGameData()
     }
     
     //animation duration properties
@@ -61,21 +69,21 @@ extension Game2048ViewController {
     }
     
     func gameOver() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1), execute: { [weak self] in
-            self?.gameOverLabel.isHidden = false
-            self?.tryAgainButton.isHidden = false
-            self?.gameOverLabel.alpha = 0.0
-            self?.tryAgainButton.alpha = 0.0
-            
-            UIView.animate(withDuration: 1.0, animations: {
-                self?.board2048View.alpha = 0.5
-            })
-            
-            UIView.animate(withDuration: 1.0, delay: 0.5, options: [], animations: {
-                self?.gameOverLabel.alpha = 1.0
-                self?.tryAgainButton.alpha = 1.0
-            }, completion: nil)
-        })
+        clearGameData()
+        
+        self.gameOverLabel.alpha = 0.0
+        self.tryAgainButton.alpha = 0.0
+        self.gameOverLabel.isHidden = false
+        self.tryAgainButton.isHidden = false
+        
+        UIView.animate(withDuration: 1.0, delay: 1.0, options: [], animations: {
+            self.board2048View.alpha = 0.5
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 1.0, delay: 1.5, options: [], animations: {
+            self.gameOverLabel.alpha = 1.0
+            self.tryAgainButton.alpha = 1.0
+        }, completion: nil)
     }
     
     @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
@@ -126,6 +134,7 @@ extension Game2048ViewController {
     func shiftMergeAndAddNewTile(to direction: UISwipeGestureRecognizer.Direction) {
         if shiftTilesWithMerging(to: direction) {
             addNewRandomTile()
+            saveGameData()
         }
         else {
             board2048View.tilePlaces.map({ $0.tiles.first }).forEach { (tile) in
@@ -223,5 +232,40 @@ extension Game2048ViewController {
         }
 
         return true //no more moves left
+    }
+    
+    func saveGameData() {
+        let tiles = board2048View.tilePlaces.map{$0.sumTiles}
+        UserDefaults.standard.set(tiles, forKey: "game2048Board")
+    }
+    
+    func loadGameData() -> Bool {
+        if let tiles = UserDefaults.standard.array(forKey: "game2048Board") as? [Int] {
+            let size = Int(sqrt(Double(tiles.count)))
+            if size * size == tiles.count && size > 0 {
+                boardSize = size
+                
+                //clear board
+                for tilePlace in board2048View.tilePlaces {
+                    board2048View.removeTiles(from: tilePlace)
+                }
+                
+                for tileIndex in 0..<tiles.count {
+                    let tileValue = tiles[tileIndex]
+                    if tileValue != 0 {
+                        let tile = Tile2048(value: tileValue)
+                        board2048View.add(tile: tile, to: board2048View.tilePlaces[tileIndex])
+                    }
+                }
+                
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func clearGameData() {
+        UserDefaults.standard.removeObject(forKey: "game2048Board")
     }
 }

@@ -156,7 +156,13 @@ extension Board2048View {
         }
     }
     
-    func remove(tile: Tile2048View, from: TilePlace2048View) {
+    func removeTiles(from tilePlace: TilePlace2048View) {
+        for tile in tilePlace.tiles {
+            remove(tile: tile, from: tilePlace)
+        }
+    }
+    
+    private func remove(tile: Tile2048View, from: TilePlace2048View) {
         tile.removeFromSuperview()
         from.tiles.remove(at: from.tiles.firstIndex(of: tile)!)
     }
