@@ -18,7 +18,7 @@ class Game2048ViewController: UIViewController, UIApplicationDelegate {
     
     @IBOutlet weak var tryAgainButton: Button2048View!
     
-    var boardSize = 4 { didSet{ board2048View.size = boardSize } }
+    var boardSize = 2 { didSet{ board2048View.size = boardSize } }
     
     var isNewGame = false
     
@@ -53,24 +53,11 @@ extension Game2048ViewController {
         board2048View.alpha = 1.0
         board2048View.size = boardSize
         
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 0])
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 1])
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 2])
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 3])
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 4])
-//        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 5])
-//        board2048View.add(tile: Tile2048(power: 2), to: board2048View[0, 6])
-//        board2048View.add(tile: Tile2048(power: 3), to: board2048View[0, 7])
-//        board2048View.add(tile: Tile2048(power: 4), to: board2048View[0, 8])
-//        board2048View.add(tile: Tile2048(power: 5), to: board2048View[0, 9])
-        
         addNewRandomTile()
         addNewRandomTile()
     }
     
     func gameOver() {
-        clearGameData()
-        
         self.gameOverLabel.alpha = 0.0
         self.tryAgainButton.alpha = 0.0
         self.gameOverLabel.isHidden = false
@@ -258,14 +245,14 @@ extension Game2048ViewController {
                     }
                 }
                 
+                if isGameOver() {
+                    gameOver()
+                }
+                
                 return true
             }
         }
         
         return false
-    }
-    
-    func clearGameData() {
-        UserDefaults.standard.removeObject(forKey: "game2048Board")
     }
 }
