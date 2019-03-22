@@ -14,9 +14,11 @@ class Game2048ViewController: UIViewController {
     
     private var game: Game2048!
     
-    var boardSize = 4
+    @IBOutlet weak var gameOverLabel: UILabel!
     
-    var isGameOver = false
+    @IBOutlet weak var tryAgainButton: Button2048View!
+    
+    var boardSize = 2 { didSet{ board2048View.size = boardSize } }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -38,6 +40,9 @@ class Game2048ViewController: UIViewController {
 //gameplay
 extension Game2048ViewController {
     func runNewGame() {
+        gameOverLabel.isHidden = true
+        tryAgainButton.isHidden = true
+        board2048View.alpha = 1.0
         board2048View.size = boardSize
         
 //        board2048View.add(tile: Tile2048(power: 1), to: board2048View[0, 0])
@@ -55,29 +60,51 @@ extension Game2048ViewController {
         addNewRandomTile()
     }
     
+    func gameOver() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1), execute: { [weak self] in
+            self?.gameOverLabel.isHidden = false
+            self?.tryAgainButton.isHidden = false
+            self?.gameOverLabel.alpha = 0.0
+            self?.tryAgainButton.alpha = 0.0
+            
+            UIView.animate(withDuration: 1.0, animations: {
+                self?.board2048View.alpha = 0.5
+            })
+            
+            UIView.animate(withDuration: 1.0, delay: 0.5, options: [], animations: {
+                self?.gameOverLabel.alpha = 1.0
+                self?.tryAgainButton.alpha = 1.0
+            }, completion: nil)
+        })
+    }
+    
     @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
-        if !isGameOver {
+        if !isGameOver() {
             shiftMergeAndAddNewTile(to: .up)
         }
         
     }
     
     @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
-        if !isGameOver {
+        if !isGameOver() {
             shiftMergeAndAddNewTile(to: .down)
         }
     }
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
-        if !isGameOver {
+        if !isGameOver() {
             shiftMergeAndAddNewTile(to: .left)
         }
     }
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
-        if !isGameOver {
+        if !isGameOver() {
             shiftMergeAndAddNewTile(to: .right)
         }
+    }
+    
+    @IBAction func pushNewGameButton(_ sender: UIButton) {
+        runNewGame()
     }
 }
 
@@ -89,6 +116,10 @@ extension Game2048ViewController {
             let tile = Tile2048(value: Tile2048.getRandomValueForNewTile())
             
             board2048View.add(tile: tile, to: randomTileEmptyPlace)
+        }
+        
+        if isGameOver() {
+            gameOver()
         }
     }
     
@@ -103,16 +134,10 @@ extension Game2048ViewController {
         }
     }
     
-    func mergeTiles() {
-        board2048View.tilePlaces.filter{ $0.tiles.count>1 }.forEach { (tilePlaceWithTileForMerging) in
-            board2048View.mergeTiles(in: tilePlaceWithTileForMerging)
-        }
-    }
-    
     func shiftTilesWithMerging(to direction: UISwipeGestureRecognizer.Direction) -> Bool {
         var isShifted = false
         
-        for lineIndex in 0..<boardSize {
+        for lineIndex in 0..<board2048View.size {
             let currentLineIsShifted = shiftTileLineWithMerging(at: lineIndex, direction: direction)
             isShifted = isShifted || currentLineIsShifted
         }
@@ -136,8 +161,7 @@ extension Game2048ViewController {
             var targetPlace: TilePlace2048View?
             
             if let lastNonEmptyTilePlaceOnTheLeft = line.filter({ $0.tiles.count > 0 && line.firstIndex(of: $0)! < nextTilePlaceWithTileForShiftingIndex}).last { //getting nearest tile place with tile on the left of current tile
-                if lastNonEmptyTilePlaceOnTheLeft.tiles.count == nextTilePlaceWithTileForShifting!.tiles.count
-                    && lastNonEmptyTilePlaceOnTheLeft.sumTiles == nextTilePlaceWithTileForShifting!.sumTiles {
+                if lastNonEmptyTilePlaceOnTheLeft.equalTo(tileRight: nextTilePlaceWithTileForShifting!) {
                     targetPlace = lastNonEmptyTilePlaceOnTheLeft //target place for moving tile on the place of tile twin with next merging
                 }
             }
@@ -157,5 +181,46 @@ extension Game2048ViewController {
         //end of shifting tiles to begin
         
         return isShifted
+    }
+    
+    func mergeTiles() {
+        board2048View.tilePlaces.filter{ $0.tiles.count>1 }.forEach { (tilePlaceWithTileForMerging) in
+            board2048View.mergeTiles(in: tilePlaceWithTileForMerging)
+        }
+    }
+}
+
+// TODO: let's classificate this
+extension Game2048ViewController {
+    
+    func isGameOver() -> Bool {
+        
+        if board2048View.tilePlaces.filter({ $0.tiles.count>0 }).count < board2048View.tilePlaces.count { //we have empty tile place on the board
+            return false
+        }
+        
+        for rowIndex in 0..<board2048View.size { //check equaling between each tile and its next in row
+            let row = board2048View.getRow(by: rowIndex)
+            for tilePlaceIndex in 0..<(board2048View.size - 1) {
+                let curTilePlace = row[tilePlaceIndex]
+                let nextTilePlace = row[tilePlaceIndex + 1]
+                if curTilePlace.sumTiles == nextTilePlace.sumTiles  {
+                    return false
+                }
+            }
+        }
+        
+        for columnIndex in 0..<board2048View.size { //check equaling between each tile and its next in column
+            let column = board2048View.getColumn(by: columnIndex)
+            for tilePlaceIndex in 0..<(board2048View.size - 1) {
+                let curTilePlace = column[tilePlaceIndex]
+                let nextTilePlace = column[tilePlaceIndex + 1]
+                if curTilePlace.sumTiles == nextTilePlace.sumTiles  {
+                    return false
+                }
+            }
+        }
+
+        return true //no more moves left
     }
 }

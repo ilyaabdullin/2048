@@ -30,13 +30,37 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVb-Xf-f9W">
+                                <rect key="frame" x="10" y="426.66666666666669" width="394" height="98.666666666666686"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="50"/>
+                                <color key="textColor" red="0.46788585186004639" green="0.43113571405410767" blue="0.39871633052825928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjM-Cz-OTB" customClass="Button2048View" customModule="_048" customModuleProvider="target">
+                                <rect key="frame" x="142" y="571.66666666666663" width="130" height="33"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Try again">
+                                    <color key="titleColor" red="0.9768713116645813" green="0.96455842256546021" blue="0.94830125570297241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushNewGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GA7-KU-fzh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98085516691207886" green="0.97201079130172729" blue="0.9357256293296814" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="bVb-Xf-f9W" firstAttribute="centerY" secondItem="Z5y-cO-qsb" secondAttribute="centerY" multiplier="1.0625" id="41Z-Ib-gtY"/>
+                            <constraint firstItem="UjM-Cz-OTB" firstAttribute="centerX" secondItem="Z5y-cO-qsb" secondAttribute="centerX" id="G5d-yw-5Iy"/>
                             <constraint firstItem="Z5y-cO-qsb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lxh-15-leI"/>
                             <constraint firstItem="Z5y-cO-qsb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="YwK-Wo-hIK"/>
                             <constraint firstItem="Z5y-cO-qsb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fgo-Kj-Mqd"/>
+                            <constraint firstItem="bVb-Xf-f9W" firstAttribute="leading" secondItem="Z5y-cO-qsb" secondAttribute="leading" id="oCg-iz-Rh8"/>
+                            <constraint firstItem="UjM-Cz-OTB" firstAttribute="centerY" secondItem="Z5y-cO-qsb" secondAttribute="centerY" multiplier="1.3125" id="rCS-Y8-orO"/>
+                            <constraint firstItem="UjM-Cz-OTB" firstAttribute="width" secondItem="Z5y-cO-qsb" secondAttribute="width" multiplier="0.33" id="s4j-aV-Wa0"/>
+                            <constraint firstItem="Z5y-cO-qsb" firstAttribute="trailing" secondItem="bVb-Xf-f9W" secondAttribute="trailing" id="stB-i6-uMd"/>
+                            <constraint firstItem="bVb-Xf-f9W" firstAttribute="height" secondItem="Z5y-cO-qsb" secondAttribute="height" multiplier="0.25" id="tq3-kC-csx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -48,6 +72,8 @@
                     </view>
                     <connections>
                         <outlet property="board2048View" destination="Z5y-cO-qsb" id="A4A-pS-NcK"/>
+                        <outlet property="gameOverLabel" destination="bVb-Xf-f9W" id="LVF-Wz-MAM"/>
+                        <outlet property="tryAgainButton" destination="UjM-Cz-OTB" id="DI0-dq-AkG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

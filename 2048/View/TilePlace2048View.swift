@@ -15,14 +15,6 @@ import UIKit
     var sumTiles: Int {
         return tiles.map{$0.value}.reduce(0, +)
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
 }
 
 //drawing
@@ -37,5 +29,12 @@ extension TilePlace2048View {
         bounds.size.height = bounds.size.width
         layer.backgroundColor = TilePlace2048View.bgTilePlaceColor.cgColor
         layer.cornerRadius = cornerRadius
+    }
+}
+
+//equaling
+extension TilePlace2048View {
+    func equalTo(tileRight: TilePlace2048View) -> Bool {
+        return self.tiles.count == tileRight.tiles.count && self.sumTiles == tileRight.sumTiles
     }
 }

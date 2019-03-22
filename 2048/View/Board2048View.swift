@@ -19,6 +19,11 @@ import UIKit
     
     var tilePlaces = [TilePlace2048View]()
     
+    //animation duration properties
+    var durationOfMovingToOneTileAnimation: TimeInterval = 0.05
+    var maxDurationOfMoving: TimeInterval = 0.4
+    var showingAndMergingTileDuration: TimeInterval = 0.4 * 5
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         fillTilePlaces()
@@ -41,11 +46,6 @@ import UIKit
             }
         }
     }
-    
-    //animation duration properties
-    var durationOfMovingToOneTileAnimation: TimeInterval = 0.05
-    var maxDurationOfMoving: TimeInterval = 0.4
-    var showingAndMergingTileDuration: TimeInterval = 0.4 * 5
 }
 
 //methods and subscript for getting each tile place and each row and column of tile places
@@ -63,7 +63,7 @@ extension Board2048View {
         }
     }
     
-    private func getRow(by rowIndex: Int) -> [TilePlace2048View] {
+    func getRow(by rowIndex: Int) -> [TilePlace2048View] {
         var tileRow = [TilePlace2048View]()
         
         for columnIndex in 0..<size {
@@ -73,7 +73,7 @@ extension Board2048View {
         return tileRow
     }
     
-    private func getColumn(by columnIndex: Int) -> [TilePlace2048View] {
+    func getColumn(by columnIndex: Int) -> [TilePlace2048View] {
         var tileColumn = [TilePlace2048View]()
         
         for rowIndex in 0..<size {
