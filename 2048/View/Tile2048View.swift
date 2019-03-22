@@ -146,7 +146,7 @@ extension Tile2048View {
     }
     
     func startFailedShifting(to direction: UISwipeGestureRecognizer.Direction, withDuration duration: CFTimeInterval) {
-        let delta: CGFloat = 0.4 * bounds.height
+        let delta: CGFloat = 0.1 * bounds.height
         var deltaPoint: CGPoint {
             switch direction {
             case .up:
@@ -169,6 +169,24 @@ extension Tile2048View {
                 self.frame.origin = CGPoint(x: self.frame.origin.x - deltaPoint.x, y: self.frame.origin.y - deltaPoint.y)
             }, completion: nil)
         })
+    }
+    
+    func startShakeAnimation(withDuration duration: CFTimeInterval) {
+        let translation = CAKeyframeAnimation(keyPath: "transform.translation.x");
+        translation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        translation.values = [-5, 5, -5, 5, -3, 3, -2, 2, 0]
+        
+        let rotation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
+        rotation.values = [-5, 5, -5, 5, -3, 3, -2, 2, 0].map {
+            ( degrees: Double) -> Double in
+            let radians: Double = (.pi * degrees) / 180.0
+            return radians
+        }
+        
+        let shakeGroup: CAAnimationGroup = CAAnimationGroup()
+        shakeGroup.animations = [translation, rotation]
+        shakeGroup.duration = duration
+        self.layer.add(shakeGroup, forKey: "shakeIt")
     }
 }
 

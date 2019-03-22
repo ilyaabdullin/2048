@@ -130,6 +130,7 @@ extension Game2048ViewController {
         else {
             board2048View.tilePlaces.map({ $0.tiles.first }).forEach { (tile) in
                 tile?.startFailedShifting(to: direction, withDuration: showingAndMergingTileDuration)
+                tile?.startShakeAnimation(withDuration: showingAndMergingTileDuration)
             }
         }
     }
