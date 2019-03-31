@@ -18,11 +18,16 @@ class Game2048ViewController: UIViewController, UIApplicationDelegate {
     
     @IBOutlet weak var tryAgainButton: Button2048View!
     
-    var boardSize = 2 { didSet{ board2048View.size = boardSize } }
+    var boardSize = 4 { didSet{ board2048View?.size = boardSize } }
     
     var isNewGame = false
     
+    override func viewDidLoad() {
+        board2048View.isHidden = true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        board2048View.size = boardSize
         super.viewDidAppear(animated)
         
         //send animation properties to board2048View
@@ -35,10 +40,6 @@ class Game2048ViewController: UIViewController, UIApplicationDelegate {
         }
     }
     
-    func applicationWillTerminate(_ application: UIApplication) {
-        saveGameData()
-    }
-    
     //animation duration properties
     var durationOfMovingToOneTileAnimation: TimeInterval = 0.05
     var maxDurationOfMoving: TimeInterval = 0.4
@@ -48,10 +49,11 @@ class Game2048ViewController: UIViewController, UIApplicationDelegate {
 //gameplay
 extension Game2048ViewController {
     func runNewGame() {
+        board2048View.size = boardSize
         gameOverLabel.isHidden = true
         tryAgainButton.isHidden = true
         board2048View.alpha = 1.0
-        board2048View.size = boardSize
+        board2048View.isHidden = false
         
         addNewRandomTile()
         addNewRandomTile()
@@ -64,7 +66,7 @@ extension Game2048ViewController {
         self.tryAgainButton.isHidden = false
         
         UIView.animate(withDuration: 1.0, delay: 1.0, options: [], animations: {
-            self.board2048View.alpha = 0.5
+            self.board2048View.alpha = 0.33
         }, completion: nil)
         
         UIView.animate(withDuration: 1.0, delay: 1.5, options: [], animations: {
@@ -100,6 +102,10 @@ extension Game2048ViewController {
     
     @IBAction func pushNewGameButton(_ sender: UIButton) {
         runNewGame()
+    }
+
+    @IBAction func backToMenu(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -231,6 +237,7 @@ extension Game2048ViewController {
             let size = Int(sqrt(Double(tiles.count)))
             if size * size == tiles.count && size > 0 {
                 boardSize = size
+                board2048View.isHidden = false
                 
                 //clear board
                 for tilePlace in board2048View.tilePlaces {

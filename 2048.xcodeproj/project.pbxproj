@@ -10,6 +10,7 @@
 		2C02D738223A466B004031EE /* Game2048.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D737223A466B004031EE /* Game2048.swift */; };
 		2C4FD90F2240E28E00573448 /* TilePlace2048View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FD90E2240E28E00573448 /* TilePlace2048View.swift */; };
 		2C4FD9112244CC0900573448 /* Button2048View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FD9102244CC0900573448 /* Button2048View.swift */; };
+		2C4FD913224516C900573448 /* Menu2048ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FD912224516C900573448 /* Menu2048ViewController.swift */; };
 		2C7619CB223B8D8C00F4D86A /* Tile2048View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7619CA223B8D8C00F4D86A /* Tile2048View.swift */; };
 		2C7CCBB322324F68001A3BD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CCBB222324F68001A3BD1 /* AppDelegate.swift */; };
 		2C7CCBB522324F68001A3BD1 /* Game2048ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CCBB422324F68001A3BD1 /* Game2048ViewController.swift */; };
@@ -23,6 +24,7 @@
 		2C02D737223A466B004031EE /* Game2048.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2048.swift; sourceTree = "<group>"; };
 		2C4FD90E2240E28E00573448 /* TilePlace2048View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilePlace2048View.swift; sourceTree = "<group>"; };
 		2C4FD9102244CC0900573448 /* Button2048View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button2048View.swift; sourceTree = "<group>"; };
+		2C4FD912224516C900573448 /* Menu2048ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu2048ViewController.swift; sourceTree = "<group>"; };
 		2C7619CA223B8D8C00F4D86A /* Tile2048View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile2048View.swift; sourceTree = "<group>"; };
 		2C7CCBAF22324F68001A3BD1 /* 2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7CCBB222324F68001A3BD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7CCBB422324F68001A3BD1 /* Game2048ViewController.swift */,
+				2C4FD912224516C900573448 /* Menu2048ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				TargetAttributes = {
 					2C7CCBAE22324F68001A3BD1 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -183,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7619CB223B8D8C00F4D86A /* Tile2048View.swift in Sources */,
+				2C4FD913224516C900573448 /* Menu2048ViewController.swift in Sources */,
 				2C4FD90F2240E28E00573448 /* TilePlace2048View.swift in Sources */,
 				2C7CCBB522324F68001A3BD1 /* Game2048ViewController.swift in Sources */,
 				2CD813362240BE0200AC4917 /* Board2048View.swift in Sources */,
@@ -343,7 +348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ilya.abdullin.-048";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -361,7 +366,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ilya.abdullin.-048";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
